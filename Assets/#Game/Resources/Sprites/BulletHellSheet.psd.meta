@@ -1,0 +1,949 @@
+fileFormatVersion: 2
+guid: d94695bc85ee6ae42a24a544e0fd1c47
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3903287530945090369
+    second: BulletHellSheet_0
+  - first:
+      213: 1154241502715576732
+    second: BulletHellSheet_1
+  - first:
+      213: 590574056771107548
+    second: BulletHellSheet_2
+  - first:
+      213: 5663203546466250240
+    second: BulletHellSheet_3
+  - first:
+      213: 6567413489355989177
+    second: BulletHellSheet_4
+  - first:
+      213: -4939797379590333690
+    second: BulletHellSheet_5
+  - first:
+      213: -664487528656974205
+    second: BulletHellSheet_6
+  - first:
+      213: 1765955698986385219
+    second: BulletHellSheet_7
+  - first:
+      213: -6881461224783633786
+    second: BulletHellSheet_8
+  - first:
+      213: 7914284077053597937
+    second: BulletHellSheet_9
+  - first:
+      213: 6585595596563202447
+    second: BulletHellSheet_10
+  - first:
+      213: 4989450616142607836
+    second: BulletHellSheet_11
+  - first:
+      213: -1902736462979266217
+    second: BulletHellSheet_12
+  - first:
+      213: 8509170950931933323
+    second: BulletHellSheet_13
+  - first:
+      213: -2352898919287625946
+    second: BulletHellSheet_14
+  - first:
+      213: 7005998419499972917
+    second: BulletHellSheet_15
+  - first:
+      213: -1031252859338434089
+    second: BulletHellSheet_16
+  - first:
+      213: -7556141994142318961
+    second: BulletHellSheet_17
+  - first:
+      213: -5712193209614919469
+    second: BulletHellSheet_18
+  - first:
+      213: -7258710966883595013
+    second: BulletHellSheet_19
+  - first:
+      213: 1928306926640471441
+    second: BulletHellSheet_20
+  - first:
+      213: -411298667894922194
+    second: BulletHellSheet_21
+  - first:
+      213: -7335357104271670616
+    second: BulletHellSheet_22
+  - first:
+      213: -5071426016817194493
+    second: BulletHellSheet_23
+  - first:
+      213: 3909452472051627672
+    second: BulletHellSheet_24
+  - first:
+      213: -8827561430854569685
+    second: BulletHellSheet_25
+  - first:
+      213: 8218418429780711021
+    second: BulletHellSheet_26
+  - first:
+      213: -8772044731828060149
+    second: BulletHellSheet_27
+  - first:
+      213: -9010749633158193021
+    second: BulletHellSheet_28
+  - first:
+      213: -890368145173659981
+    second: BulletHellSheet_29
+  - first:
+      213: 8721407621589364112
+    second: BulletHellSheet_30
+  - first:
+      213: 8120616094550829238
+    second: BulletHellSheet_31
+  - first:
+      213: 4400101728608349354
+    second: BulletHellSheet_32
+  - first:
+      213: 3839679894428970536
+    second: BulletHellSheet_33
+  - first:
+      213: -4377303640101033227
+    second: BulletHellSheet_34
+  - first:
+      213: -4713615392122574665
+    second: BulletHellSheet_35
+  - first:
+      213: -3839894467705334266
+    second: BulletHellSheet_36
+  - first:
+      213: 986373836596901666
+    second: BulletHellSheet_37
+  - first:
+      213: 4196352105844936740
+    second: BulletHellSheet_38
+  - first:
+      213: -2293341308482523710
+    second: BulletHellSheet_39
+  - first:
+      213: 4148900000631577505
+    second: BulletHellSheet_40
+  - first:
+      213: -4147813494061113606
+    second: BulletHellSheet_41
+  - first:
+      213: 8788344081053836855
+    second: BulletHellSheet_42
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BulletHellSheet_0
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 274
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3fd3c665053dde41b8a85592c1ddc47
+      internalID: -3903287530945090369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_1
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 274
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0494cac25c4444e41a6befc79657acba
+      internalID: 1154241502715576732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_2
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 274
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d141e249c7b7a3f4ca21e37351620ae0
+      internalID: 590574056771107548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_3
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 274
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70afc4c9f10264d4aa36390f2e664b8d
+      internalID: 5663203546466250240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_4
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 274
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2287ac8fd1592724ba4bdac11a0a224c
+      internalID: 6567413489355989177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_5
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 174
+        width: 215
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d4c87a82ace56046bb7da39846c7cc2
+      internalID: -4939797379590333690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_6
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 274
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d016bb6a7f6ca254d9c8e2ca17eaf415
+      internalID: -664487528656974205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_7
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 235
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26e8cb5198df08e4b9fba9099c37ab6a
+      internalID: 1765955698986385219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_8
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 241
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ad049c1f1d0284449e93fdd37163303
+      internalID: -6881461224783633786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_9
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 241
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e0107e82cd973447b3c24198a155149
+      internalID: 7914284077053597937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_10
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 241
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04184f74009541a41b6e0b98983b3f67
+      internalID: 6585595596563202447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_11
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 241
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 659359f132b1ff549ba5abb831914006
+      internalID: 4989450616142607836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_12
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 241
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3909c39bc82409f4eafe4e150f3ac8ef
+      internalID: -1902736462979266217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_13
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f07cc36e42b502418f8d7b0ed2d57e8
+      internalID: 8509170950931933323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_14
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef1727319bf097c4ead472f8759459ac
+      internalID: -2352898919287625946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_15
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38d9861d323ed504db1de59baa269321
+      internalID: 7005998419499972917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_16
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d7dc6c76f21ad94f9c25a80686104f7
+      internalID: -1031252859338434089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_17
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64daa64bffcc784428c493c392a9cf40
+      internalID: -7556141994142318961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_18
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 150
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4920d714741a284787817cd3a72f679
+      internalID: -5712193209614919469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_19
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 150
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db7167819d202f24db2274ca23f3e308
+      internalID: -7258710966883595013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_20
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 179
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8036adead3ff1eb40815149b6296e952
+      internalID: 1928306926640471441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_21
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 179
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19d993002ff3a4548b9b41e70906f3a3
+      internalID: -411298667894922194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_22
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 179
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74468718f89a57d43ab4864f4dd08483
+      internalID: -7335357104271670616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_23
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 179
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4f782646c4890a45939569f36b9af38
+      internalID: -5071426016817194493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_24
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 179
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b4cd6e59105c3f4581ad91e1fe44f0a
+      internalID: 3909452472051627672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_25
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 59
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fa49cda8d12b664e80be724fb3c8604
+      internalID: -8827561430854569685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_26
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 59
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fc6ce493e167a84590adf8fed0f5c47
+      internalID: 8218418429780711021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_27
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 59
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cd22eb5ffabaca4da3bdca02789c1b4
+      internalID: -8772044731828060149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_28
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 59
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14361173dbfa4b448be00ed558b11a55
+      internalID: -9010749633158193021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_29
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 59
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b4c3deb1bbaa3e45b0e53a7831dd31c
+      internalID: -890368145173659981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_30
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 86
+        width: 31
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4676d4f2b1fc07d408d46ce74f5e06bf
+      internalID: 8721407621589364112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_31
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 86
+        width: 31
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a283dd18ec6c3441a260892a19c6b5a
+      internalID: 8120616094550829238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletHellSheet_32
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 86
+        width: 31
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b9609ceebecb1d49927c5edf9550f93
+      internalID: 4400101728608349354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
