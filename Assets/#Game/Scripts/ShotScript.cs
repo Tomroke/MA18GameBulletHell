@@ -10,13 +10,7 @@ public class ShotScript : MonoBehaviour
 
     [SerializeField]
     private bool isEnemyShot = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         Destroy(gameObject, 15);
@@ -26,5 +20,10 @@ public class ShotScript : MonoBehaviour
     {
         get { return isEnemyShot; }
         set { isEnemyShot = value; }
+    }
+
+    public float DamageAmount()
+    {
+        return damage;
     }
 }

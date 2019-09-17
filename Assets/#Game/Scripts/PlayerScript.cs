@@ -8,6 +8,9 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private Vector2 speed = new Vector2(50, 50);
 
+    [SerializeField]
+    private float collisionDamageAmount = 1.0f;
+
     private Vector2 movement;
     private Rigidbody2D rigidbodyComponent;
 
@@ -20,10 +23,10 @@ public class PlayerScript : MonoBehaviour
 
         if (CrossPlatformInputManager.GetButtonDown("FireingButton"))
         {
-            FireingScript fireing = GetComponent<FireingScript>();
+            FiringScript fireing = GetComponent<FiringScript>();
             if (fireing != null)
             {
-                fireing.Attack(true);
+                fireing.Attack(false);
             }
         }
 
@@ -36,4 +39,30 @@ public class PlayerScript : MonoBehaviour
 
         rigidbodyComponent.velocity = movement;
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        bool damagePlayer = false;
+
+        EnemyScript enemy = collision.gameObject.GetComponent<EnemyScript>();
+        if (enemy != null)
+        {
+            HealthScript enemyHealth = enemy.GetComponent<HealthScript>();
+            if (enemyHealth != null)
+                enemyHealth.Damage(enemyHealth.Health());
+
+            damagePlayer = true;
+        }
+
+        if (damagePlayer)
+        {
+            HealthScript playerHealth = this.GetComponent<HealthScript>();
+            if (playerHealth != null)
+                playerHealth.Damage(collisionDamageAmount);
+        }
+
+    }
+
+
+
 }

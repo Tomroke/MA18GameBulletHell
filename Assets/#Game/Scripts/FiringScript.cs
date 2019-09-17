@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireingScript : MonoBehaviour
+public class FiringScript: MonoBehaviour
 {
     [SerializeField]
     private Transform shotPrefab;
@@ -15,6 +15,14 @@ public class FireingScript : MonoBehaviour
     [Range(0.1f, 10.0f)]
     private float shotCooldown;
 
+    [SerializeField]
+    private float minLag = 0.0001f;
+
+    [SerializeField]
+    private float maxLag = 0.05f;
+
+    private bool isShootingRateAsynchronous = false;
+
     void Start()
     {
         shotCooldown = 0f;
@@ -24,14 +32,30 @@ public class FireingScript : MonoBehaviour
     {
         if (shotCooldown > 0)
         {
-            shotCooldown -= Time.deltaTime;
+            shotCooldown -= (Time.deltaTime + asynchronousShooting());
         } 
     }
 
-    public void Attack (bool enemy)
+    public float asynchronousShooting()
+    {
+        float lag = 0.0f;
+
+        if (isShootingRateAsynchronous)
+        {
+            lag = Random.Range(minLag, maxLag);
+            return lag;
+        }
+        else
+        {
+            return lag;
+        }
+    }
+
+    public void Attack (bool isEnemy)
     {
         if (CanAttack)
         {
+
             shotCooldown = shootingRate;
 
             var shotTransform = Instantiate(shotPrefab) as Transform;
@@ -41,7 +65,7 @@ public class FireingScript : MonoBehaviour
             ShotScript shot = shotTransform.gameObject.GetComponent<ShotScript>();
             if (shot != null)
             {
-                shot.IsEnemyShot = enemy;
+                shot.IsEnemyShot = isEnemy;
             }
 
             MoveScript move = shotTransform.gameObject.GetComponent<MoveScript>();
@@ -52,12 +76,14 @@ public class FireingScript : MonoBehaviour
         }
     }
 
-    private bool CanAttack
+    public bool CanAttack
     {
-        get
-        {
-            return shotCooldown <= 0f;
-        }
+        get { return shotCooldown <= 0f; }
+    }
+
+    public void setAsynchronousShooting(bool temp)
+    {
+        isShootingRateAsynchronous = temp;
     }
 
 }
