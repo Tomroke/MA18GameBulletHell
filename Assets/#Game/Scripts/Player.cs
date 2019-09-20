@@ -3,17 +3,62 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class PlayerScript : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField]
     private Vector2 speed = new Vector2(50, 50);
 
+    [Range(0.1f, 5.0f)]
     [SerializeField]
-    private float collisionDamageAmount = 1.0f;
+    private float shootingRate = 0.5f;
 
+    [Range(0.1f, 5.0f)]
+    [SerializeField]
+    private float coolDown = 0.25f;
+
+    [Range(1, 50)]
+    [SerializeField]
+    private int ammoAmount = 10;
+
+
+    private float collisionDamageAmount = 1.0f;
     private Vector2 movement;
     private Rigidbody2D rigidbodyComponent;
+    FiringScript fireing;
 
+    private static Player _instance;
+
+    public static Player Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = Instantiate(Resources.Load<GameObject>("Prefab/Player")).GetComponent<Player>();
+            }
+
+            return _instance;
+        }
+    }
+
+    void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        fireing = GetComponent<FiringScript>();
+        fireing.SetFireRules(shootingRate, coolDown, ammoAmount);
+    }
 
     void Update()
     {
@@ -23,10 +68,11 @@ public class PlayerScript : MonoBehaviour
 
         if (CrossPlatformInputManager.GetButtonDown("FireingButton"))
         {
-            FiringScript fireing = GetComponent<FiringScript>();
+            fireing = GetComponent<FiringScript>();
+
             if (fireing != null)
             {
-                fireing.Attack(false);
+                fireing.Attack();
             }
         }
 

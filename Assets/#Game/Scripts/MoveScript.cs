@@ -6,32 +6,26 @@ public class MoveScript : MonoBehaviour
 {
 
     [SerializeField]
-    private Vector2 speed = new Vector2(50, 50);
+    [Range(0.0f, 10.0f)]
+    private float animationSpeedY = 3.0f;
+
 
     [SerializeField]
-    private Vector2 direction = new Vector2(0, -1);
+    [Range(0.0f, 10.0f)]
+    private float animationSpeedX = 1.0F;
 
-    private Vector2 movement;
-    private Rigidbody2D rigidbodyComponent;
+    [SerializeField]
+    [Range (0, 8)]
+    private int xDestination = 1;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField]
+    private float yDestination = -9;
+
+    private void Start()
     {
-            movement = new Vector2(speed.x * direction.x, speed.y * direction.y);
-    }
-
-    void FixedUpdate()
-    {
-        if (rigidbodyComponent == null)
-            rigidbodyComponent = GetComponent<Rigidbody2D>();
-
-        rigidbodyComponent.velocity = movement;
-    }
-
-    public Vector2 Direction
-    {
-        get { return direction; }
-        set { direction = value; }
+        LeanTween.moveY(gameObject, yDestination, animationSpeedY).setLoopPingPong();
+        LeanTween.moveX(gameObject,  xDestination + gameObject.transform.position.x, animationSpeedX).setEaseInOutCubic().setLoopPingPong();
+        LeanTween.rotateZ(gameObject, 360, 5).setLoopCount(5);
     }
 
 }

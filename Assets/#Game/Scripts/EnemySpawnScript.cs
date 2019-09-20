@@ -18,25 +18,22 @@ public class EnemySpawnScript : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Spawning has Started");
         enemyPrefab.transform.position = spawnPoints[RandomIndex()].transform.position;
-        StartCoroutine("SpawnEnemies");
+        StartCoroutine(SpawnEnemies());
     }
 
     IEnumerator SpawnEnemies()
     {
-        Debug.Log("In Coroutine");
         while (bossNotActive)
         {
-            Debug.Log("in While loop");
             yield return new WaitForSeconds(spawnDelay);
             instantiateEnemy();
-            Debug.Log("Spawn Active");
         }
     }
 
     private void instantiateEnemy()
     {
+        Debug.Log("Enemy Spawned");
         enemyPrefab.transform.position = spawnPoints[RandomIndex()].transform.position;
         Instantiate(enemyPrefab);
     }

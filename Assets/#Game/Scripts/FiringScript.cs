@@ -1,79 +1,85 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FiringScript: MonoBehaviour
 {
     [SerializeField]
-    private Transform shotPrefab;
+    private GameObject shotPrefab;
 
-    [SerializeField]
-    [Range(0.1f, 10.0f)]
-    private float shootingRate = 0.25F;
+    private float shootingRate;
 
-    [SerializeField]
-    [Range(0.1f, 10.0f)]
     private float shotCooldown;
 
-    [SerializeField]
-    private float minLag = 0.0001f;
+    private int ammoAmount;
 
-    [SerializeField]
-    private float maxLag = 0.05f;
+    private bool enemyShots = false;
 
-    private bool isShootingRateAsynchronous = false;
+    private bool isAllowedToAttack = true;
+
+    List<Rigidbody2D> ammoBelt = new List<Rigidbody2D>();
 
     void Start()
     {
+        InitiateAmmo();
         shotCooldown = 0f;
     }
+
 
     void Update()
     {
         if (shotCooldown > 0)
         {
-            shotCooldown -= (Time.deltaTime + asynchronousShooting());
+            shotCooldown -= (Time.deltaTime);
         } 
     }
 
-    public float asynchronousShooting()
+    private void InitiateAmmo()
     {
-        float lag = 0.0f;
+        for (int i = 0; i < ammoAmount; i++)
+        {
+            GameObject bullet = Instantiate(shotPrefab);
+            bullet.SetActive(false);
 
-        if (isShootingRateAsynchronous)
-        {
-            lag = Random.Range(minLag, maxLag);
-            return lag;
-        }
-        else
-        {
-            return lag;
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+
+            ShotScript shot = rb.GetComponent<ShotScript>();
+            if (shot != null)
+            {
+                shot.IsEnemyShot = enemyShots;
+            }
+
+            ammoBelt.Add(rb);
         }
     }
 
-    public void Attack (bool isEnemy)
+    public void Attack ()
     {
-        if (CanAttack)
+        if (CanAttack && isAllowedToAttack)
         {
-
             shotCooldown = shootingRate;
+            Rigidbody2D rb = GetAmmo();
 
-            var shotTransform = Instantiate(shotPrefab) as Transform;
-
-            shotTransform.position = transform.position;
-
-            ShotScript shot = shotTransform.gameObject.GetComponent<ShotScript>();
-            if (shot != null)
+            if (rb != null)
             {
-                shot.IsEnemyShot = isEnemy;
-            }
-
-            MoveScript move = shotTransform.gameObject.GetComponent<MoveScript>();
-            if(move != null)
-            {
-                move.Direction = this.transform.up;
+                rb.gameObject.GetComponent<ShotScript>().StartAnimation();
+                rb.transform.position = transform.position;
             }
         }
+    }
+
+    Rigidbody2D GetAmmo()
+    {
+        foreach (Rigidbody2D bullet in ammoBelt)
+        {
+            if (!bullet.gameObject.activeInHierarchy)
+            {
+                bullet.gameObject.SetActive(true);
+                return bullet;
+            }
+        }
+        return null;
     }
 
     public bool CanAttack
@@ -81,9 +87,38 @@ public class FiringScript: MonoBehaviour
         get { return shotCooldown <= 0f; }
     }
 
-    public void setAsynchronousShooting(bool temp)
+    public void DestroyAmmo()
     {
-        isShootingRateAsynchronous = temp;
+        for (int i = ammoBelt.Count-1; i >=0; i--)
+        {
+            Destroy(ammoBelt[i].gameObject);
+            ammoBelt.RemoveAt(i);
+        }
+    }
+
+    public void SetIsAllowedToAttack(bool check)
+    {
+        isAllowedToAttack = check;
+    }
+
+    public void SetFireRules(float rate, float cooldown, int ammo, bool enemy)
+    {
+        shootingRate = rate;
+
+        shotCooldown = cooldown;
+
+        ammoAmount = ammo;
+
+        enemyShots = enemy;
+    }
+
+    public void SetFireRules(float rate, float cooldown, int ammo)
+    {
+        shootingRate = rate;
+
+        shotCooldown = cooldown;
+
+        ammoAmount = ammo;
     }
 
 }

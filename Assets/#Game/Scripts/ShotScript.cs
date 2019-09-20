@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class ShotScript : MonoBehaviour
 {
+    [SerializeField]
+    [Range(0.0f, 10.0f)]
+    private float animationSpeedY = 6.0f;
+
+    [SerializeField]
+    [Range(0.0f, 10.0f)]
+    private float animationSpeedX = 1.0F;
+
+    [SerializeField]
+    private float yDestination = -9;
 
     [SerializeField]
     private float damage = 1.0f;
@@ -11,11 +21,13 @@ public class ShotScript : MonoBehaviour
     [SerializeField]
     private bool isEnemyShot = false;
 
-    void Update()
-    {
-        Destroy(gameObject, 15);
-    }
+    private int id;
 
+    public void StartAnimation()
+    {
+
+        id = LeanTween.moveY(gameObject, yDestination, animationSpeedY).id;
+    }
     public bool IsEnemyShot
     {
         get { return isEnemyShot; }
@@ -25,5 +37,11 @@ public class ShotScript : MonoBehaviour
     public float DamageAmount()
     {
         return damage;
+    }
+
+    private void OnBecameInvisible()
+    {
+        LeanTween.cancel(id);
+        gameObject.SetActive(false);
     }
 }

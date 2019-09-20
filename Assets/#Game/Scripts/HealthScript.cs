@@ -28,7 +28,17 @@ public class HealthScript : MonoBehaviour
             if (shot.IsEnemyShot != isEnemy)
             {
                 Damage(shot.DamageAmount());
-                Destroy(shot.gameObject);
+                shot.gameObject.SetActive(false);
+            }
+        }
+
+        EnemyScript enemy = collision.gameObject.GetComponent<EnemyScript>();
+        if(enemy != null)
+        {
+            if (collision.gameObject.name == "Player")
+            {
+                Damage(1.0f);
+                Destroy(enemy.gameObject);
             }
         }
     }
