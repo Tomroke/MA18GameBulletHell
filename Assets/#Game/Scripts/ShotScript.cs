@@ -26,8 +26,10 @@ public class ShotScript : MonoBehaviour
     public void StartAnimation()
     {
 
+        LeanTween.rotateAround(gameObject, Vector3.forward, 360, 6.0f).setLoopCount(10);
         id = LeanTween.moveY(gameObject, yDestination, animationSpeedY).id;
     }
+
     public bool IsEnemyShot
     {
         get { return isEnemyShot; }
