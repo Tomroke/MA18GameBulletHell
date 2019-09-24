@@ -6,6 +6,8 @@ public class EnemyScript : MonoBehaviour
 {
     private FiringScript firing;
 
+    private bool inCameraView = false;
+
     [Range(0.1f, 5.0f)]
     [SerializeField]
     private float shootingRate = 0.5f;
@@ -26,15 +28,21 @@ public class EnemyScript : MonoBehaviour
 
     void Update()
     {
-        if (firing != null && firing.CanAttack)
+        if (firing != null && firing.CanAttack && inCameraView)
         {
             firing.Attack();
         }
     }
 
+    private void OnBecameVisible()
+    {
+        inCameraView = true;
+    }
+
     private void OnBecameInvisible()
     {
-        firing.SetIsAllowedToAttack(false);
+
+        inCameraView = false;
         firing.DestroyAmmo();
         Destroy(gameObject);
     }

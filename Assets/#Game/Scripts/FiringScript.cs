@@ -56,7 +56,7 @@ public class FiringScript: MonoBehaviour
 
     public void Attack ()
     {
-        if (CanAttack && isAllowedToAttack)
+        if (CanAttack)
         {
             shotCooldown = shootingRate;
             Rigidbody2D rb = GetAmmo();
@@ -94,11 +94,6 @@ public class FiringScript: MonoBehaviour
             Destroy(ammoBelt[i].gameObject);
             ammoBelt.RemoveAt(i);
         }
-    }
-
-    public void SetIsAllowedToAttack(bool check)
-    {
-        isAllowedToAttack = check;
     }
 
     public void SetFireRules(float rate, float cooldown, int ammo, bool enemy)

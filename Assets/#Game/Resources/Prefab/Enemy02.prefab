@@ -189,11 +189,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97daab058d431654fb401c1372724b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useAnimationOne: 0
-  useAnimationTwo: 1
-  useAnimationThree: 0
-  animationSpeedY: 3
-  animationSpeedX: 1
-  xDestination: -1
+  pathParent: {fileID: 0}
+  speed: 6.1
+  loopType: 0
+  easeType: 0
+  startingTime: 0
   spriteRotationSpeed: 5
-  yDestination: -9

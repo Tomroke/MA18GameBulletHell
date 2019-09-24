@@ -30,13 +30,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3979193104543706010}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -4.8, y: 5.5299997, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.3463552, w: 0.9381035}
+  m_LocalPosition: {x: -1.4980845, y: 4.838149, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 178.88301}
 --- !u!212 &3979193104543706013
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -189,11 +189,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97daab058d431654fb401c1372724b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useAnimationOne: 1
-  useAnimationTwo: 0
-  useAnimationThree: 0
-  animationSpeedY: 10
-  animationSpeedX: 3
-  xDestination: 2
+  pathParent: {fileID: 969002508488950428, guid: 88bb84d61511b4949ae763921ed1a50b,
+    type: 3}
+  speed: 2
+  loopType: 21
+  easeType: 1
+  startingTime: 0
   spriteRotationSpeed: 5
-  yDestination: -8

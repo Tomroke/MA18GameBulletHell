@@ -35,11 +35,8 @@ public class EnemySpawnScript : MonoBehaviour
     {
         //Debug.Log("Enemy Spawned");
         int ranNumb = RandomIndex();
+        enemyPrefab.GetComponent<MoveScript>().SetParentPosition(spawnPoints[ranNumb].transform.position);
         enemyPrefab.transform.position = spawnPoints[ranNumb].transform.position;
-        enemyPrefab.GetComponent<MoveScript>().SetParentPosition(
-                                                                 spawnPoints[ranNumb].transform.position.x,
-                                                                 spawnPoints[ranNumb].transform.position.y,
-                                                                 spawnPoints[ranNumb].transform.position.z);
         enemyPrefab.GetComponent<MoveScript>().InitiateMovement();
         Instantiate(enemyPrefab);
     }

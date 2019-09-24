@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class MoveScript : MonoBehaviour
 {
-    private GameObject parent;
+    [SerializeField]
+    private GameObject pathParent;
 
     private Vector3[] path;
 
     private Transform[] pathTransformers;
 
-    private LTSpline visualizedPath;
-
-    [SerializeField]
-    private string pathLocation;
+    private LTSpline visualizePath;
 
     [SerializeField]
     [Range(0.0f, 10.0f)]
@@ -32,12 +30,6 @@ public class MoveScript : MonoBehaviour
     [Range(0, 8)]
     private int spriteRotationSpeed = 5;
 
-
-    private void Awake()
-    {
-        parent = Resources.Load<GameObject>(pathLocation);
-    }
-
     private void Start()
     {
         InitiateMovement();
@@ -46,7 +38,7 @@ public class MoveScript : MonoBehaviour
     public void InitiateMovement()
     {
         LeanTween.rotateAround(gameObject, Vector3.forward, 360, 6.0f).setLoopCount(10);
-        pathTransformers = parent.GetComponentsInChildren<Transform>();
+        pathTransformers = pathParent.GetComponentsInChildren<Transform>();
         path = new Vector3[pathTransformers.Length - 1];
 
 
@@ -59,6 +51,8 @@ public class MoveScript : MonoBehaviour
             }
         }
 
+        visualizePath = new LTSpline(path);
+
         if (path != null)
         {
             LTDescr tween = LeanTween.moveSpline(gameObject, path, speed)
@@ -69,9 +63,19 @@ public class MoveScript : MonoBehaviour
         }
     }
 
-    public void SetParentPosition (float spawnInputX, float spawnInputY, float spawnInputZ)
+    public void SetParentPosition (Vector3 input)
     {
-        parent = Resources.Load<GameObject>(pathLocation);
-        parent.transform.position.Set(spawnInputX, spawnInputY, spawnInputZ);
+        pathParent.transform.position = input;
+        Debug.Log(pathParent.transform.position);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        if (visualizePath != null)
+        {
+            visualizePath.gizmoDraw();
+        }
     }
 }
