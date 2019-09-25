@@ -30,8 +30,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3979193104543706010}
-  m_LocalRotation: {x: -0, y: -0, z: 0.3463552, w: 0.9381035}
-  m_LocalPosition: {x: -1.4980845, y: 4.838149, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.9916611, w: -0.12887368}
+  m_LocalPosition: {x: 2.5379481, y: 1.6525081, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -146,9 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f6aff3457dae8f40b911754f6ca5983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingRate: 1
-  coolDown: 0.25
-  ammoAmount: 20
+  shootingRate: 1.5
+  coolDown: 0.3
+  ammoAmount: 10
 --- !u!114 &3979193104543706016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +176,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotPrefab: {fileID: 8438792447566311217, guid: 619a853d77fd1304992f2461823ed099,
+    type: 3}
+  ammoBagPrefab: {fileID: 2197583556022900588, guid: 18b3e843244a6e44baff427008b99ebd,
     type: 3}
 --- !u!114 &4907618837423879144
 MonoBehaviour:

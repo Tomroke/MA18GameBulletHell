@@ -18,7 +18,11 @@ public class FiringScript: MonoBehaviour
 
     private bool isAllowedToAttack = true;
 
+    private Vector3 shootersCurrentPosition;
+
     List<Rigidbody2D> ammoBelt = new List<Rigidbody2D>();
+
+    private float fireDirectionY = -9.0f;
 
     void Start()
     {
@@ -33,6 +37,7 @@ public class FiringScript: MonoBehaviour
         {
             shotCooldown -= (Time.deltaTime);
         } 
+
     }
 
     private void InitiateAmmo()
@@ -40,6 +45,8 @@ public class FiringScript: MonoBehaviour
         for (int i = 0; i < ammoAmount; i++)
         {
             GameObject bullet = Instantiate(shotPrefab);
+            bullet.transform.parent = gameObject.transform;
+
             bullet.SetActive(false);
 
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
@@ -63,9 +70,28 @@ public class FiringScript: MonoBehaviour
 
             if (rb != null)
             {
-                rb.gameObject.GetComponent<ShotScript>().StartAnimation();
-                rb.transform.position = transform.position;
+                rb.gameObject.GetComponent<ShotScript>().StartAnimation(gameObject.transform.position.x, fireDirectionY);
+
+                rb.transform.position = gameObject.transform.position;
             }
+
+        }
+    }
+
+    public void Attack(float newY)
+    {
+        if (CanAttack)
+        {
+            shotCooldown = shootingRate;
+            Rigidbody2D rb = GetAmmo();
+
+            if (rb != null)
+            {
+                rb.gameObject.GetComponent<ShotScript>().StartAnimation(gameObject.transform.position.x, newY);
+
+                rb.transform.position = gameObject.transform.position;
+            }
+
         }
     }
 

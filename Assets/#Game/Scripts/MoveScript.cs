@@ -32,6 +32,7 @@ public class MoveScript : MonoBehaviour
 
     private void Start()
     {
+        pathParent.transform.position = gameObject.transform.position;
         InitiateMovement();
     }
 
@@ -66,7 +67,6 @@ public class MoveScript : MonoBehaviour
     public void SetParentPosition (Vector3 input)
     {
         pathParent.transform.position = input;
-        Debug.Log(pathParent.transform.position);
     }
 
     void OnDrawGizmos()

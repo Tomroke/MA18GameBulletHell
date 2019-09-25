@@ -5,29 +5,31 @@ using UnityEngine;
 public class ShotScript : MonoBehaviour
 {
     [SerializeField]
-    [Range(0.0f, 10.0f)]
-    private float animationSpeedY = 6.0f;
-
-    [SerializeField]
-    [Range(0.0f, 10.0f)]
-    private float animationSpeedX = 1.0F;
-
-    [SerializeField]
-    private float yDestination = -9;
-
-    [SerializeField]
+    [Range(0.1f, 10.0f)]
     private float damage = 1.0f;
 
     [SerializeField]
     private bool isEnemyShot = false;
 
+    [SerializeField]
+    [Range(0.0f, 10.0f)]
+    private float speed = 3.0f;
+
+    [SerializeField]
+    private LeanTweenType loopType;
+
+    [SerializeField]
+    private LeanTweenType easeType;
+
     private int id;
 
-    public void StartAnimation()
+    public void StartAnimation(float x, float y)
     {
-
-        LeanTween.rotateAround(gameObject, Vector3.forward, 360, 6.0f).setLoopCount(10);
-        id = LeanTween.moveY(gameObject, yDestination, animationSpeedY).id;
+        id = LeanTween.move(gameObject, new Vector3(x, y,-0), speed)
+                .setSpeed(speed)
+                .setEase(easeType)
+                .setLoopType(loopType)
+                .id;
     }
 
     public bool IsEnemyShot

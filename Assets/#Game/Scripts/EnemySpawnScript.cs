@@ -15,6 +15,7 @@ public class EnemySpawnScript : MonoBehaviour
     private GameObject enemyPrefab;
 
     private bool bossNotActive = true;
+    private int previousNumb;
 
     private void Start()
     {
@@ -33,12 +34,20 @@ public class EnemySpawnScript : MonoBehaviour
 
     private void instantiateEnemy()
     {
-        //Debug.Log("Enemy Spawned");
-        int ranNumb = RandomIndex();
-        enemyPrefab.GetComponent<MoveScript>().SetParentPosition(spawnPoints[ranNumb].transform.position);
-        enemyPrefab.transform.position = spawnPoints[ranNumb].transform.position;
-        enemyPrefab.GetComponent<MoveScript>().InitiateMovement();
-        Instantiate(enemyPrefab);
+        bool enemyHasSpawned = false;
+        while (!enemyHasSpawned)
+        {
+            int newNumb = RandomIndex();
+            if (previousNumb != newNumb)
+            {
+                previousNumb = newNumb;
+                enemyPrefab.GetComponent<MoveScript>().SetParentPosition(spawnPoints[newNumb].transform.position);
+                enemyPrefab.transform.position = spawnPoints[newNumb].transform.position;
+                enemyPrefab.GetComponent<MoveScript>().InitiateMovement();
+                Instantiate(enemyPrefab);
+                enemyHasSpawned = true;
+            }
+        }
     }
 
     public int RandomIndex()

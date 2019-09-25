@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
     private int ammoAmount = 10;
 
 
+    [SerializeField]
+    private float fireDirectionY = 9.0f;
+
     private float collisionDamageAmount = 1.0f;
     private Vector2 movement;
     private Rigidbody2D rigidbodyComponent;
@@ -66,14 +69,52 @@ public class Player : MonoBehaviour
         float inputY = CrossPlatformInputManager.GetAxis("Vertical");
         movement = new Vector2(speed.x * inputX, speed.y * inputY);
 
-        if (CrossPlatformInputManager.GetButtonDown("FireingButton"))
-        {
-            fireing = GetComponent<FiringScript>();
 
-            if (fireing != null)
+        //if (CrossPlatformInputManager.GetButtonDown("FireingButton"))
+        //{
+        //    fireing = GetComponent<FiringScript>();
+
+        //    if (fireing != null)
+        //    {
+        //        fireing.Attack(fireDirectionY);
+        //    }
+        //}
+
+        foreach (Touch touch in Input.touches)
+        {
+            Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+            touchPosition.z = 0;
+
+            fireing = GetComponent<FiringScript>();
+            RaycastHit2D hit = Physics2D.Raycast(touchPosition, Vector2.zero);
+
+            switch (touch.phase)
             {
-                fireing.Attack();
+                case TouchPhase.Began:
+                    if (hit.collider != null && hit.collider.gameObject == GameObject.Find("FireButton"))
+                    {
+                        Debug.Log("Touch Began");
+                    }
+                    break;
+
+                case TouchPhase.Stationary:
+                    if (hit.collider != null && hit.collider.gameObject == GameObject.Find("FireButton"))
+                    {
+                        if (fireing != null)
+                        {
+                            fireing.Attack(fireDirectionY);
+                        }
+                    }
+                    break;
+
+                case TouchPhase.Ended:
+                    if (hit.collider != null && hit.collider.gameObject == GameObject.Find("FireButton"))
+                    {
+                        Debug.Log("Touch Ended");
+                    }
+                    break;
             }
+
         }
 
     }

@@ -143,8 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b679fa11254d89c47849e32fc6ec306e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeedY: 1.55
-  animationSpeedX: 1
-  yDestination: -9
+  shotDirection: -1
+  speed: 6.8
   damage: 1
+  loopType: 0
+  easeType: 0
   isEnemyShot: 1
