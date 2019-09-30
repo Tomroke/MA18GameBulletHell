@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShotScript : MonoBehaviour
 {
+    [Header("Private Variables")]
     [SerializeField]
     [Range(0.1f, 10.0f)]
     private float damage = 1.0f;
@@ -15,21 +16,17 @@ public class ShotScript : MonoBehaviour
     [Range(0.0f, 10.0f)]
     private float speed = 3.0f;
 
-    [SerializeField]
-    private LeanTweenType loopType;
+    private Vector2 movementDirection;
 
-    [SerializeField]
-    private LeanTweenType easeType;
-
-    private int id;
-
-    public void StartAnimation(float x, float y)
+    private void Update()
     {
-        id = LeanTween.move(gameObject, new Vector3(x, y,-0), speed)
-                .setSpeed(speed)
-                .setEase(easeType)
-                .setLoopType(loopType)
-                .id;
+        transform.Translate(movementDirection * speed *Time.deltaTime);
+        //transform.Rotate(Vector3.forward * 50 * Time.deltaTime, Space.World);
+    }
+
+    public void StartAnimation(Vector2 direction)
+    {
+        movementDirection = direction;
     }
 
     public bool IsEnemyShot
@@ -45,7 +42,10 @@ public class ShotScript : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        LeanTween.cancel(id);
-        gameObject.SetActive(false);
+        if (gameObject.activeInHierarchy)
+        {
+            gameObject.SetActive(false);
+        }
+
     }
 }

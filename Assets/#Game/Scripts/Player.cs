@@ -5,21 +5,25 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour
 {
+    [Header("Bullet Variables")]
     [SerializeField]
     private Vector2 speed = new Vector2(50, 50);
 
     [Range(0.1f, 5.0f)]
     [SerializeField]
-    private float shootingRate = 0.5f;
+    private float rateOfFire = 0.5f;
+
+    [Range(1, 100)]
+    [SerializeField]
+    private int bulletAmount;
 
     [Range(0.1f, 5.0f)]
     [SerializeField]
-    private float coolDown = 0.25f;
+    private float coolDownPerSec = 0.25f;
 
     [Range(1, 50)]
     [SerializeField]
     private int ammoAmount = 10;
-
 
     [SerializeField]
     private float fireDirectionY = 9.0f;
@@ -60,7 +64,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         fireing = GetComponent<FiringScript>();
-        fireing.SetFireRules(shootingRate, coolDown, ammoAmount);
+        fireing.SetFireRules(rateOfFire, coolDownPerSec, bulletAmount, ammoAmount);
     }
 
     void Update()

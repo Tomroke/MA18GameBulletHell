@@ -190,10 +190,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6416a62c291a26147b874fb043fdb64c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 20, y: 20}
-  shootingRate: 0.5
+  speed: {x: 15, y: 15}
+  rateOfFire: 0.5
+  bulletAmount: 1
   coolDown: 0.25
-  ammoAmount: 20
+  ammoAmount: 50
   fireDirectionY: 9
 --- !u!114 &6315890946555351606
 MonoBehaviour:
@@ -223,5 +224,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotPrefab: {fileID: 1417099409362608756, guid: 5a48b2238f4f0f7428075e1dc7eacb86,
     type: 3}
-  ammoBagPrefab: {fileID: 2197583556022900588, guid: 18b3e843244a6e44baff427008b99ebd,
-    type: 3}
+  projectileSpeed: 2

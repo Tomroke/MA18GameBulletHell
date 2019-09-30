@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MoveScript : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject pathParent;
 
     private Vector3[] path;
 
@@ -13,15 +11,15 @@ public class MoveScript : MonoBehaviour
 
     private LTSpline visualizePath;
 
+    private bool reverseOrder = false;
+
+    [Header("Private Variables")]
+    [SerializeField]
+    private GameObject pathParent;
+
     [SerializeField]
     [Range(0.0f, 10.0f)]
     private float speed = 3.0f;
-
-    [SerializeField]
-    private LeanTweenType loopType;
-
-    [SerializeField]
-    private LeanTweenType easeType;
 
     [SerializeField]
     private float startingTime = 0;
@@ -30,6 +28,12 @@ public class MoveScript : MonoBehaviour
     [Range(0, 8)]
     private int spriteRotationSpeed = 5;
 
+    [Header("LeenTween Variables")]
+    [SerializeField]
+    private LeanTweenType loopType;
+
+    [SerializeField]
+    private LeanTweenType easeType;
     private void Start()
     {
         pathParent.transform.position = gameObject.transform.position;
@@ -42,9 +46,15 @@ public class MoveScript : MonoBehaviour
         pathTransformers = pathParent.GetComponentsInChildren<Transform>();
         path = new Vector3[pathTransformers.Length - 1];
 
+        if (pathTransformers != null && reverseOrder)
+        {
+            for (int i = pathTransformers.Length - 1; i > 1; i--)
+            {
+                path[path.Length - i] = pathTransformers[i].position;
+            }
+        }
 
-
-        if (pathTransformers != null)
+        else if (pathTransformers != null)
         {
             for (int i = 1; i < pathTransformers.Length; i++)
             {

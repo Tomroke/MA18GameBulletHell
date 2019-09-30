@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HealthScript : MonoBehaviour
 {
+    [Header("Private Variables")]
     [SerializeField]
     private float health = 1.0f;
 

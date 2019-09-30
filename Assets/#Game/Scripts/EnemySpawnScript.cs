@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemySpawnScript : MonoBehaviour
 {
+    [Header("Private Variables")]
     [SerializeField]
     private List<Transform> spawnPoints = new List<Transform>();
 

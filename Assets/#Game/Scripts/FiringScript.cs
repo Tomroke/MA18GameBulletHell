@@ -8,11 +8,18 @@ public class FiringScript: MonoBehaviour
     [SerializeField]
     private GameObject shotPrefab;
 
-    private float shootingRate;
+    [SerializeField]
+    private float startAngle = 0f, endAngle = 90f;
 
-    private float shotCooldown;
+    private const float radius = 1F;
+
+    private float rateOfFire;
+
+    private float cooldown;
 
     private int ammoAmount;
+
+    private int bulletAmount;
 
     private bool enemyShots = false;
 
@@ -20,98 +27,111 @@ public class FiringScript: MonoBehaviour
 
     private Vector3 shootersCurrentPosition;
 
-    List<Rigidbody2D> ammoBelt = new List<Rigidbody2D>();
+    List<GameObject> ammoBelt = new List<GameObject>();
 
     private float fireDirectionY = -9.0f;
 
     void Start()
     {
         InitiateAmmo();
-        shotCooldown = 0f;
+        cooldown = 0f;
     }
 
 
     void Update()
     {
-        if (shotCooldown > 0)
+        if (cooldown > 0)
         {
-            shotCooldown -= (Time.deltaTime);
+            Debug.Log(cooldown);
+            cooldown -= (Time.deltaTime);
         } 
 
     }
+
 
     private void InitiateAmmo()
     {
         for (int i = 0; i < ammoAmount; i++)
         {
-            GameObject bullet = Instantiate(shotPrefab);
-            bullet.transform.parent = gameObject.transform;
-
-            bullet.SetActive(false);
-
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-
-            ShotScript shot = rb.GetComponent<ShotScript>();
-            if (shot != null)
+            GameObject bullet = Instantiate(shotPrefab, gameObject.transform.position, Quaternion.identity);
+            if (bullet != null)
             {
-                shot.IsEnemyShot = enemyShots;
+                bullet.GetComponent<Rigidbody2D>().GetComponent<ShotScript>().IsEnemyShot = enemyShots;
+                bullet.SetActive(false);
+                ammoBelt.Add(bullet);
             }
-
-            ammoBelt.Add(rb);
         }
     }
 
-    public void Attack ()
+
+    //Enemies Attack
+    public void Attack()
     {
         if (CanAttack)
         {
-            shotCooldown = shootingRate;
-            Rigidbody2D rb = GetAmmo();
-
-            if (rb != null)
-            {
-                rb.gameObject.GetComponent<ShotScript>().StartAnimation(gameObject.transform.position.x, fireDirectionY);
-
-                rb.transform.position = gameObject.transform.position;
-            }
-
+            cooldown = rateOfFire;
+            SpawnProjectile();
         }
     }
 
+    //Player Attack
     public void Attack(float newY)
     {
         if (CanAttack)
         {
-            shotCooldown = shootingRate;
-            Rigidbody2D rb = GetAmmo();
+            cooldown = rateOfFire;
+            GameObject bullet = GetAmmo();
 
-            if (rb != null)
+            if (bullet != null)
             {
-                rb.gameObject.GetComponent<ShotScript>().StartAnimation(gameObject.transform.position.x, newY);
-
-                rb.transform.position = gameObject.transform.position;
+                bullet.transform.position = gameObject.transform.position;
             }
 
         }
     }
 
-    Rigidbody2D GetAmmo()
+    private void SpawnProjectile()
     {
-        foreach (Rigidbody2D bullet in ammoBelt)
+        float angleStep = (endAngle - startAngle) / (bulletAmount-1);
+        float angle = startAngle;
+
+            for (int i = 0; i < bulletAmount; i++)
+            {
+                float projectileDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f) * radius;
+                float projectileDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f) * radius;
+
+                Vector3 projectileVector = new Vector3(projectileDirX, projectileDirY , 0.0f);
+                Vector2 projectileMoveDirection = (projectileVector - transform.position).normalized;
+
+                GameObject _Bullet = GetAmmo();
+                _Bullet.transform.position = transform.position;
+                _Bullet.transform.rotation = transform.rotation;
+                _Bullet.SetActive(true);
+                _Bullet.GetComponent<ShotScript>().StartAnimation(projectileMoveDirection);
+
+                angle += angleStep;
+            }
+    }
+
+    public GameObject GetAmmo()
+    {
+        foreach (GameObject bullet in ammoBelt)
         {
             if (!bullet.gameObject.activeInHierarchy)
             {
-                bullet.gameObject.SetActive(true);
                 return bullet;
             }
+            
         }
         return null;
     }
 
+
     public bool CanAttack
     {
-        get { return shotCooldown <= 0f; }
+        get { return cooldown <= 0f; }
     }
+
 
     public void DestroyAmmo()
     {
@@ -122,22 +142,28 @@ public class FiringScript: MonoBehaviour
         }
     }
 
-    public void SetFireRules(float rate, float cooldown, int ammo, bool enemy)
-    {
-        shootingRate = rate;
 
-        shotCooldown = cooldown;
+    public void SetFireRules(float rateOfFire, float cooldown, int bulletAmount, int ammo, bool enemy)
+    {
+        this.rateOfFire = rateOfFire;
+
+        this.cooldown = cooldown;
+
+        this.bulletAmount = bulletAmount;
 
         ammoAmount = ammo;
 
         enemyShots = enemy;
     }
 
-    public void SetFireRules(float rate, float cooldown, int ammo)
-    {
-        shootingRate = rate;
 
-        shotCooldown = cooldown;
+    public void SetFireRules(float rateOfFire, float cooldown, int bulletAmount, int ammo)
+    {
+        this.rateOfFire = rateOfFire;
+
+        this.cooldown = cooldown;
+
+        this.bulletAmount = bulletAmount;
 
         ammoAmount = ammo;
     }

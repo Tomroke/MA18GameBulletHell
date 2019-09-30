@@ -8,13 +8,18 @@ public class EnemyScript : MonoBehaviour
 
     private bool inCameraView = false;
 
+    [Header("Bullet Variables")]
     [Range(0.1f, 5.0f)]
     [SerializeField]
-    private float shootingRate = 0.5f;
+    private float rateOfFire = 0.5f;
+
+    [Range(1, 100)]
+    [SerializeField]
+    private int bulletAmount;
 
     [Range(0.1f, 5.0f)]
     [SerializeField]
-    private float coolDown = 0.25f;
+    private float coolDownPerSec = 0.25f;
 
     [Range(1, 50)]
     [SerializeField]
@@ -23,7 +28,7 @@ public class EnemyScript : MonoBehaviour
     void Awake()
     {
         firing = GetComponent<FiringScript>();
-        firing.SetFireRules(shootingRate, coolDown, ammoAmount, true);
+        firing.SetFireRules(rateOfFire, coolDownPerSec, bulletAmount, ammoAmount, true);
     }
 
     void Update()
