@@ -17,6 +17,7 @@ public class HealthScript : MonoBehaviour
 
         if (health <= 0.0f)
         {
+            gameObject.GetComponent<FiringScript>().DestroyAmmo();
             Destroy(gameObject);
         }
     }
@@ -33,20 +34,22 @@ public class HealthScript : MonoBehaviour
             }
         }
 
-        EnemyScript enemy = collision.gameObject.GetComponent<EnemyScript>();
-        if(enemy != null)
+        HealthScript enemy = collision.gameObject.GetComponent<HealthScript>();
+        if (enemy != null && !enemy.IsEnemy())
         {
-            if (collision.gameObject.name == "Player")
-            {
-                Damage(1.0f);
-                Destroy(enemy.gameObject);
-            }
+            Damage(1.0f);
+            enemy.Damage(1.0f);
         }
     }
 
     public float Health()
     {
         return health;
+    }
+
+    public bool IsEnemy()
+    {
+        return isEnemy;
     }
 
 }

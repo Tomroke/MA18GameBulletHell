@@ -42,7 +42,6 @@ public class FiringScript: MonoBehaviour
     {
         if (cooldown > 0)
         {
-            Debug.Log(cooldown);
             cooldown -= (Time.deltaTime);
         } 
 
@@ -105,7 +104,6 @@ public class FiringScript: MonoBehaviour
 
                 GameObject _Bullet = GetAmmo();
                 _Bullet.transform.position = transform.position;
-                _Bullet.transform.rotation = transform.rotation;
                 _Bullet.SetActive(true);
                 _Bullet.GetComponent<ShotScript>().StartAnimation(projectileMoveDirection);
 

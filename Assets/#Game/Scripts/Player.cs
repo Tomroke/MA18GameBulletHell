@@ -28,12 +28,15 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float fireDirectionY = 9.0f;
 
+    private float startAngle, endAngle;
+
     private float collisionDamageAmount = 1.0f;
     private Vector2 movement;
     private Rigidbody2D rigidbodyComponent;
     FiringScript fireing;
 
     private static Player _instance;
+
 
     public static Player Instance
     {
@@ -48,6 +51,7 @@ public class Player : MonoBehaviour
         }
     }
 
+
     void Awake()
     {
         if (_instance != null && _instance != this)
@@ -61,28 +65,25 @@ public class Player : MonoBehaviour
         }
     }
 
+
     private void Start()
     {
         fireing = GetComponent<FiringScript>();
-        fireing.SetFireRules(rateOfFire, coolDownPerSec, bulletAmount, ammoAmount);
+        SetFiringRules(rateOfFire, coolDownPerSec, bulletAmount, ammoAmount);
     }
+
+
+    public void SetFiringRules(float rof, float cooldown, int bullet, int ammo)
+    {
+        fireing.SetFireRules(rof, cooldown, bullet, ammo);
+    }
+
 
     void Update()
     {
         float inputX = CrossPlatformInputManager.GetAxis("Horizontal");
         float inputY = CrossPlatformInputManager.GetAxis("Vertical");
         movement = new Vector2(speed.x * inputX, speed.y * inputY);
-
-
-        //if (CrossPlatformInputManager.GetButtonDown("FireingButton"))
-        //{
-        //    fireing = GetComponent<FiringScript>();
-
-        //    if (fireing != null)
-        //    {
-        //        fireing.Attack(fireDirectionY);
-        //    }
-        //}
 
         foreach (Touch touch in Input.touches)
         {
@@ -123,6 +124,7 @@ public class Player : MonoBehaviour
 
     }
 
+
     void FixedUpdate()
     {
         if (rigidbodyComponent == null)
@@ -131,27 +133,14 @@ public class Player : MonoBehaviour
         rigidbodyComponent.velocity = movement;
     }
 
+
     void OnCollisionEnter2D(Collision2D collision)
     {
-        bool damagePlayer = false;
-
-        EnemyScript enemy = collision.gameObject.GetComponent<EnemyScript>();
-        if (enemy != null)
+        PowerupScript powerUp = collision.gameObject.GetComponent<PowerupScript>();
+        if (powerUp != null)
         {
-            HealthScript enemyHealth = enemy.GetComponent<HealthScript>();
-            if (enemyHealth != null)
-                enemyHealth.Damage(enemyHealth.Health());
-
-            damagePlayer = true;
+            Debug.Log(powerUp.gameObject.name);
         }
-
-        if (damagePlayer)
-        {
-            HealthScript playerHealth = this.GetComponent<HealthScript>();
-            if (playerHealth != null)
-                playerHealth.Damage(collisionDamageAmount);
-        }
-
     }
 
 
