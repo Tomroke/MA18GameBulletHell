@@ -162,8 +162,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotPrefab: {fileID: 6215374154902560654, guid: 7208eb2ab7c5d3146ba017574bbd5638,
     type: 3}
-  startAngle: 160
-  endAngle: 200
 --- !u!114 &2448150117208547591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +178,8 @@ MonoBehaviour:
   bulletAmount: 2
   coolDownPerSec: 0.25
   ammoAmount: 10
+  startAngle: 160
+  endAngle: 200
 --- !u!114 &7224352077846124799
 MonoBehaviour:
   m_ObjectHideFlags: 0

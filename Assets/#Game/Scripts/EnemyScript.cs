@@ -25,10 +25,18 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     private int ammoAmount = 10;
 
+    [Range(0, 360)]
+    [SerializeField]
+    private float startAngle;
+
+    [Range(0, 360)]
+    [SerializeField]
+    private float endAngle;
+
     void Awake()
     {
         firing = GetComponent<FiringScript>();
-        firing.SetFireRules(rateOfFire, coolDownPerSec, bulletAmount, ammoAmount, true);
+        firing.SetFireRules(rateOfFire, coolDownPerSec, bulletAmount, ammoAmount, true, startAngle, endAngle);
     }
 
     void Update()

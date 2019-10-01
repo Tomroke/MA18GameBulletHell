@@ -25,12 +25,14 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int ammoAmount = 10;
 
+    [Range(0, 360)]
     [SerializeField]
-    private float fireDirectionY = 9.0f;
+    private float startAngle;
 
-    private float startAngle, endAngle;
+    [Range(0, 360)]
+    [SerializeField]
+    private float endAngle; 
 
-    private float collisionDamageAmount = 1.0f;
     private Vector2 movement;
     private Rigidbody2D rigidbodyComponent;
     FiringScript fireing;
@@ -75,7 +77,7 @@ public class Player : MonoBehaviour
 
     public void SetFiringRules(float rof, float cooldown, int bullet, int ammo)
     {
-        fireing.SetFireRules(rof, cooldown, bullet, ammo);
+        fireing.SetFireRules(rof, cooldown, bullet, ammo, startAngle, endAngle);
     }
 
 
@@ -107,7 +109,7 @@ public class Player : MonoBehaviour
                     {
                         if (fireing != null)
                         {
-                            fireing.Attack(fireDirectionY);
+                            fireing.Attack();
                         }
                     }
                     break;

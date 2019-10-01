@@ -8,8 +8,9 @@ public class FiringScript: MonoBehaviour
     [SerializeField]
     private GameObject shotPrefab;
 
-    [SerializeField]
-    private float startAngle = 0f, endAngle = 90f;
+    private float startAngle;
+
+    private float endAngle;
 
     private const float radius = 1F;
 
@@ -63,29 +64,12 @@ public class FiringScript: MonoBehaviour
     }
 
 
-    //Enemies Attack
     public void Attack()
     {
         if (CanAttack)
         {
             cooldown = rateOfFire;
             SpawnProjectile();
-        }
-    }
-
-    //Player Attack
-    public void Attack(float newY)
-    {
-        if (CanAttack)
-        {
-            cooldown = rateOfFire;
-            GameObject bullet = GetAmmo();
-
-            if (bullet != null)
-            {
-                bullet.transform.position = gameObject.transform.position;
-            }
-
         }
     }
 
@@ -141,7 +125,7 @@ public class FiringScript: MonoBehaviour
     }
 
 
-    public void SetFireRules(float rateOfFire, float cooldown, int bulletAmount, int ammo, bool enemy)
+    public void SetFireRules(float rateOfFire, float cooldown, int bulletAmount, int ammo, bool enemy, float startAngle, float endAngle)
     {
         this.rateOfFire = rateOfFire;
 
@@ -152,10 +136,14 @@ public class FiringScript: MonoBehaviour
         ammoAmount = ammo;
 
         enemyShots = enemy;
+
+        this.startAngle = startAngle;
+
+        this.endAngle = endAngle;
     }
 
 
-    public void SetFireRules(float rateOfFire, float cooldown, int bulletAmount, int ammo)
+    public void SetFireRules(float rateOfFire, float cooldown, int bulletAmount, int ammo, float startAngle, float endAngle)
     {
         this.rateOfFire = rateOfFire;
 
@@ -164,6 +152,10 @@ public class FiringScript: MonoBehaviour
         this.bulletAmount = bulletAmount;
 
         ammoAmount = ammo;
+
+        this.startAngle = startAngle;
+
+        this.endAngle = endAngle;
     }
 
 }
