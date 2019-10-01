@@ -71,13 +71,13 @@ public class Player : MonoBehaviour
     private void Start()
     {
         fireing = GetComponent<FiringScript>();
-        SetFiringRules(rateOfFire, coolDownPerSec, bulletAmount, ammoAmount);
+        SetFiringRules(rateOfFire, coolDownPerSec, bulletAmount, ammoAmount, startAngle, endAngle);
     }
 
 
-    public void SetFiringRules(float rof, float cooldown, int bullet, int ammo)
+    public void SetFiringRules(float rof, float cooldown, int bullet, int ammo, float startAngleIn, float endAngleIn)
     {
-        fireing.SetFireRules(rof, cooldown, bullet, ammo, startAngle, endAngle);
+        fireing.SetFireRules(rof, cooldown, bullet, ammo, startAngleIn, endAngleIn);
     }
 
 
@@ -136,12 +136,21 @@ public class Player : MonoBehaviour
     }
 
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         PowerupScript powerUp = collision.gameObject.GetComponent<PowerupScript>();
         if (powerUp != null)
         {
-            Debug.Log(powerUp.gameObject.name);
+            rateOfFire = powerUp.getRateofFire();
+            coolDownPerSec = powerUp.getCoolDownPerSec();
+            bulletAmount = powerUp.getBulletAmount();
+            ammoAmount = powerUp.getAmmoAmount();
+            startAngle = powerUp.getStartAngle();
+            endAngle = powerUp.getEndAngle();
+
+            SetFiringRules(rateOfFire, coolDownPerSec, bulletAmount, ammoAmount, startAngle, endAngle);
+
+            Destroy(powerUp.gameObject);
         }
     }
 
