@@ -20,7 +20,7 @@ public class FiringScript: MonoBehaviour
 
     private int bulletsPerShot;
 
-    private Sprite bulletSpite;
+    private Sprite bulletSprite;
 
     private float spriteScale;
 
@@ -58,7 +58,7 @@ public class FiringScript: MonoBehaviour
     {
         for (int i = 0; i < ammoAmount; i++)
         {
-            bulletObject.GetComponent<SpriteRenderer>().sprite = bulletSpite;
+            bulletObject.GetComponent<SpriteRenderer>().sprite = bulletSprite;
             bulletObject.GetComponent<Transform>().localScale = new Vector3(spriteScale, spriteScale, 0);
             GameObject bulletsPerShot = Instantiate(bulletObject, gameObject.transform.position, Quaternion.identity);
             if (bulletsPerShot != null)
@@ -75,6 +75,7 @@ public class FiringScript: MonoBehaviour
     {
         if (CanAttack)
         {
+            ChangeSprite();
             coolDownPerSec = rateOfFire;
             SpawnProjectile();
         }
@@ -100,6 +101,17 @@ public class FiringScript: MonoBehaviour
 
                 angle += angleStep;
             }
+    }
+
+    public void ChangeSprite()
+    {
+        foreach (GameObject gameObject in ammoBelt)
+        {
+            if (!gameObject.activeInHierarchy)
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = bulletSprite;
+            }
+        }
     }
 
     public GameObject GetAmmo()
@@ -139,7 +151,7 @@ public class FiringScript: MonoBehaviour
                              bool enemyShots,
                              float startAngle,
                              float endAngle,
-                             Sprite bulletSpite,
+                             Sprite bulletSprite,
                              float bulletSpeed,
                              int bulletDamage,
                              float spriteScale)
@@ -159,7 +171,7 @@ public class FiringScript: MonoBehaviour
 
         this.endAngle = endAngle;
 
-        this.bulletSpite = bulletSpite;
+        this.bulletSprite = bulletSprite;
 
         this.spriteScale = spriteScale;
 
@@ -182,7 +194,7 @@ public class FiringScript: MonoBehaviour
                              int ammoAmount,
                              float startAngle,
                              float endAngle,
-                             Sprite bulletSpite,
+                             Sprite bulletSprite,
                              float bulletSpeed,
                              int bulletDamage,
                              float spriteScale)
@@ -199,7 +211,12 @@ public class FiringScript: MonoBehaviour
 
         this.endAngle = endAngle;
 
-        this.bulletSpite = bulletSpite;
+        if (this.bulletSprite != bulletSprite)
+        {
+        this.bulletSprite = bulletSprite;
+
+        ChangeSprite();
+        }
 
         this.spriteScale = spriteScale;
 
@@ -211,6 +228,8 @@ public class FiringScript: MonoBehaviour
         bulletObject.GetComponent<ShotScript>().SetDamage = bulletDamage;
 
         }
+
+
     }
 
 }

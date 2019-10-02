@@ -12,7 +12,7 @@ public class HealthScript : MonoBehaviour
     private bool isEnemy = true;
 
     private GameObject playerHealthIcon;
-    private List<GameObject> playerHealthList = new List<GameObject>();
+    public List<GameObject> playerHealthList = new List<GameObject>();
 
     public void Damage(int damageAmount)
     {
@@ -68,8 +68,7 @@ public class HealthScript : MonoBehaviour
                 float tempPos = -8;
                 playerHealthIcon.GetComponent<Transform>().LeanSetPosX(tempPos+index);
                 playerHealthIcon.SetActive(true);
-                Instantiate(playerHealthIcon);
-                playerHealthList.Add(playerHealthIcon);
+                playerHealthList.Add(Instantiate(playerHealthIcon));
             }
         }
     }
