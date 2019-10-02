@@ -144,8 +144,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rateOfFire: 0.2
-  bulletAmount: 2
+  bulletsPerShot: 2
   coolDownPerSec: 0.3
   ammoAmount: 50
   startAngle: 330
   endAngle: 30
+  speed: 10
+  damage: 2
+  bulletSprite: {fileID: 590574056771107548, guid: d94695bc85ee6ae42a24a544e0fd1c47,
+    type: 3}

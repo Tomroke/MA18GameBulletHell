@@ -15,15 +15,23 @@ public class Player : MonoBehaviour
 
     [Range(1, 100)]
     [SerializeField]
-    private int bulletAmount;
+    private int bulletsPerShot;
 
     [Range(0.1f, 5.0f)]
     [SerializeField]
     private float coolDownPerSec = 0.25f;
 
-    [Range(1, 50)]
     [SerializeField]
+    [Range(1, 50)]
     private int ammoAmount = 10;
+
+    [SerializeField]
+    [Range(1, 50)]
+    private int bulletDamage = 1;
+
+    [SerializeField]
+    [Range(1, 50)]
+    private float bulletSpeed = 3.0f;
 
     [Range(0, 360)]
     [SerializeField]
@@ -33,10 +41,15 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float endAngle; 
 
+    [SerializeField]
+    private Sprite bulletSprite;
+    [SerializeField]
+    private float spriteScale;
+
     private Vector2 movement;
     private Rigidbody2D rigidbodyComponent;
-    FiringScript fireing;
-
+    private FiringScript fireing;
+    private HealthScript health;
     private static Player _instance;
 
 
@@ -70,14 +83,33 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+
+        health = GetComponent<HealthScript>();
+        if (health != null)
+        {
+            health.InstansiatePlayerHealthBar();
+        }
+
         fireing = GetComponent<FiringScript>();
-        SetFiringRules(rateOfFire, coolDownPerSec, bulletAmount, ammoAmount, startAngle, endAngle);
+        if (fireing != null)
+        {
+            SetFiringRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, spriteScale);
+        }
+            
     }
 
-
-    public void SetFiringRules(float rof, float cooldown, int bullet, int ammo, float startAngleIn, float endAngleIn)
+    public void SetFiringRules(float rateOfFire,    
+                               float coolDownPerSec,
+                               int bulletsPerShot,
+                               int ammoAmount,
+                               float startAngle,
+                               float endAngle,
+                               Sprite bulletSprite,
+                               float bulletSpeed,
+                               int bulletDamage,
+                               float spriteScale)
     {
-        fireing.SetFireRules(rof, cooldown, bullet, ammo, startAngleIn, endAngleIn);
+        fireing.SetFireRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, spriteScale);
     }
 
 
@@ -143,12 +175,15 @@ public class Player : MonoBehaviour
         {
             rateOfFire = powerUp.getRateofFire();
             coolDownPerSec = powerUp.getCoolDownPerSec();
-            bulletAmount = powerUp.getBulletAmount();
+            bulletsPerShot = powerUp.getBulletAmount();
             ammoAmount = powerUp.getAmmoAmount();
             startAngle = powerUp.getStartAngle();
             endAngle = powerUp.getEndAngle();
+            bulletSprite = powerUp.getSprite();
+            bulletSpeed = powerUp.getSpeed();
+            bulletDamage = powerUp.getDamage();
 
-            SetFiringRules(rateOfFire, coolDownPerSec, bulletAmount, ammoAmount, startAngle, endAngle);
+            SetFiringRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, spriteScale);
 
             Destroy(powerUp.gameObject);
         }

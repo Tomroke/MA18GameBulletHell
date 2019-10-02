@@ -192,10 +192,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: {x: 15, y: 15}
   rateOfFire: 0.5
-  bulletAmount: 1
+  bulletsPerShot: 1
   coolDownPerSec: 0.25
   ammoAmount: 50
-  fireDirectionY: 9
+  bulletDamage: 1
+  bulletSpeed: 3
+  startAngle: 0
+  endAngle: 0
+  bulletSprite: {fileID: -7335357104271670616, guid: d94695bc85ee6ae42a24a544e0fd1c47,
+    type: 3}
+  spriteScale: 3
 --- !u!114 &6315890946555351606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76509af1958f3b4d86399b62661c3c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  health: 5
   isEnemy: 0
 --- !u!114 &6315890946555351605
 MonoBehaviour:
@@ -222,7 +228,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19f1e012b027dcf4abac460f57b7de6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotPrefab: {fileID: 1417099409362608756, guid: 5a48b2238f4f0f7428075e1dc7eacb86,
-    type: 3}
-  startAngle: 0
-  endAngle: 90

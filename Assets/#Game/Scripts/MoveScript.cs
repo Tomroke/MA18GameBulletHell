@@ -15,7 +15,7 @@ public class MoveScript : MonoBehaviour
 
     [Header("Private Variables")]
     [SerializeField]
-    private GameObject pathParent;
+    private GameObject pathParent; 
 
     [SerializeField]
     [Range(0.0f, 10.0f)]

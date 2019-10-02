@@ -12,15 +12,19 @@ public class EnemySpawnScript : MonoBehaviour
     [SerializeField]
     private float spawnDelay = 10.0f;
     
-    [SerializeField]
-    private GameObject enemyPrefab;
+    private GameObject enemyPrefabOne;
+    private GameObject enemyPrefabTwo;
+    private GameObject enemyPrefabBoss;
 
     private bool bossNotActive = true;
     private int previousNumb;
 
     private void Start()
     {
-        enemyPrefab.transform.position = spawnPoints[RandomIndex()].transform.position;
+        enemyPrefabOne = Resources.Load<GameObject>("Prefab/Enemy01");
+        enemyPrefabTwo = Resources.Load<GameObject>("Prefab/Enemy02");
+        enemyPrefabBoss = Resources.Load<GameObject>("Prefab/Boss01");
+
         StartCoroutine(SpawnEnemies());
     }
 
@@ -39,16 +43,42 @@ public class EnemySpawnScript : MonoBehaviour
         while (!enemyHasSpawned)
         {
             int newNumb = RandomIndex();
-            if (previousNumb != newNumb)
+            if (previousNumb != newNumb && EnemyType() == 1)
             {
                 previousNumb = newNumb;
-                enemyPrefab.GetComponent<MoveScript>().SetParentPosition(spawnPoints[newNumb].transform.position);
-                enemyPrefab.transform.position = spawnPoints[newNumb].transform.position;
-                enemyPrefab.GetComponent<MoveScript>().InitiateMovement();
-                Instantiate(enemyPrefab);
+                enemyPrefabOne.GetComponent<MoveScript>().SetParentPosition(spawnPoints[newNumb].transform.position);
+                enemyPrefabOne.transform.position = spawnPoints[newNumb].transform.position;
+                enemyPrefabOne.GetComponent<MoveScript>().InitiateMovement();
+                enemyPrefabOne.SetActive(true);
+                Instantiate(enemyPrefabOne);
+                enemyHasSpawned = true;
+            }
+            if (previousNumb != newNumb && EnemyType() == 2)
+            {
+                previousNumb = newNumb;
+                enemyPrefabTwo.GetComponent<MoveScript>().SetParentPosition(spawnPoints[newNumb].transform.position);
+                enemyPrefabTwo.transform.position = spawnPoints[newNumb].transform.position;
+                enemyPrefabTwo.GetComponent<MoveScript>().InitiateMovement();
+                enemyPrefabTwo.SetActive(true);
+                Instantiate(enemyPrefabTwo);
                 enemyHasSpawned = true;
             }
         }
+    }
+
+    public int EnemyType()
+    {
+        int enemyNum = UnityEngine.Random.Range(1, 6);
+        if (enemyNum <= 3)
+        {
+            return 1;
+        }
+
+        if (enemyNum >= 4)
+        {
+            return 2;
+        }
+        return 0;
     }
 
     public int RandomIndex()

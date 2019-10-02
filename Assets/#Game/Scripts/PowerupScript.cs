@@ -10,7 +10,7 @@ public class PowerupScript : MonoBehaviour
 
     [Range(1, 100)]
     [SerializeField]
-    private int bulletAmount;
+    private int bulletsPerShot;
 
     [Range(0.1f, 5.0f)]
     [SerializeField]
@@ -28,6 +28,17 @@ public class PowerupScript : MonoBehaviour
     [SerializeField]
     private float endAngle;
 
+    [Range(0, 10)]
+    [SerializeField]
+    private float speed;
+
+    [Range(0, 5)]
+    [SerializeField]
+    private int damage;
+
+    [SerializeField]
+    private Sprite bulletSprite;
+    
 
     public float getRateofFire()
     {
@@ -36,7 +47,7 @@ public class PowerupScript : MonoBehaviour
 
     public int getBulletAmount()
     {
-        return bulletAmount;
+        return bulletsPerShot;
     }
 
     public float getCoolDownPerSec()
@@ -57,5 +68,20 @@ public class PowerupScript : MonoBehaviour
     public float getEndAngle()
     {
         return endAngle;
+    }
+
+    public float getSpeed()
+    {
+        return speed;
+    }
+
+    public int getDamage()
+    {
+        return damage;
+    }
+
+    public Sprite getSprite()
+    {
+        return bulletSprite;
     }
 }

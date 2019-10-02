@@ -15,7 +15,7 @@ public class EnemyScript : MonoBehaviour
 
     [Range(1, 100)]
     [SerializeField]
-    private int bulletAmount;
+    private int bulletsPerShot;
 
     [Range(0.1f, 5.0f)]
     [SerializeField]
@@ -25,6 +25,14 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     private int ammoAmount = 10;
 
+    [SerializeField]
+    [Range(1, 50)]
+    private int bulletDamage = 1;
+
+    [SerializeField]
+    [Range(1, 50)]
+    private float bulletSpeed = 3.0f;
+
     [Range(0, 360)]
     [SerializeField]
     private float startAngle;
@@ -33,10 +41,16 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     private float endAngle;
 
+    [SerializeField]
+    private Sprite bulletSprite;
+    [SerializeField]
+    private float spriteScale;
+
     void Awake()
     {
+
         firing = GetComponent<FiringScript>();
-        firing.SetFireRules(rateOfFire, coolDownPerSec, bulletAmount, ammoAmount, true, startAngle, endAngle);
+        firing.SetFireRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, true, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, spriteScale);
     }
 
     void Update()

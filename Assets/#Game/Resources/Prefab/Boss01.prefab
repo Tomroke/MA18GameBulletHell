@@ -134,8 +134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19f1e012b027dcf4abac460f57b7de6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotPrefab: {fileID: 4710661673174553533, guid: b97291c7390d6d74088d0ff04d1ca28b,
-    type: 3}
 --- !u!114 &962471818470129061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,8 +147,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rateOfFire: 1.5
-  bulletAmount: 3
+  bulletsPerShot: 3
   coolDownPerSec: 0.25
   ammoAmount: 50
+  bulletDamage: 1
+  bulletSpeed: 3
   startAngle: 120
   endAngle: 230
+  bulletSprite: {fileID: 8218418429780711021, guid: d94695bc85ee6ae42a24a544e0fd1c47,
+    type: 3}
+  spriteScale: 1

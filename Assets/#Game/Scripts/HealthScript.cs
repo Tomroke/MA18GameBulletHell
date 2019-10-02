@@ -6,16 +6,29 @@ public class HealthScript : MonoBehaviour
 {
     [Header("Private Variables")]
     [SerializeField]
-    private float health = 1.0f;
+    private int health = 1;
 
     [SerializeField]
     private bool isEnemy = true;
 
-    public void Damage(float damageAmount)
+    private GameObject playerHealthIcon;
+    private List<GameObject> playerHealthList = new List<GameObject>();
+
+    public void Damage(int damageAmount)
     {
+
+        if (gameObject.tag.Equals("Player") && health > 0)
+        {
+            Debug.Log(playerHealthList[health - 1]);
+            GameObject temp = playerHealthList[health - 1];
+            temp.SetActive(false);
+            //playerHealthList.RemoveAt(health - 1);
+            //Destroy(playerHealthList[health - 1], 1);
+        }
+
         health -= damageAmount;
 
-        if (health <= 0.0f)
+        if (health <= 0)
         {
             gameObject.GetComponent<FiringScript>().DestroyAmmo();
             Destroy(gameObject);
@@ -29,16 +42,35 @@ public class HealthScript : MonoBehaviour
         {
             if (shot.IsEnemyShot != isEnemy)
             {
-                Damage(shot.DamageAmount());
-                shot.gameObject.SetActive(false);
+            Damage(shot.DamageAmount());
+            shot.gameObject.SetActive(false);
             }
         }
 
         HealthScript enemy = collision.gameObject.GetComponent<HealthScript>();
-        if (enemy != null && !enemy.IsEnemy())
+        if (enemy != null)
         {
-            Damage(1.0f);
-            enemy.Damage(1.0f);
+            if (!enemy.IsEnemy())
+            {
+                Damage(1);
+                enemy.Damage(1);
+            }
+        }
+    }
+
+    public void InstansiatePlayerHealthBar()
+    {
+        if (gameObject.tag.Equals("Player"))
+        {
+            for (int index = 0; index < health; index++)
+            {
+                playerHealthIcon = Resources.Load<GameObject>("Prefab/PlayerLifePoint");
+                float tempPos = -8;
+                playerHealthIcon.GetComponent<Transform>().LeanSetPosX(tempPos+index);
+                playerHealthIcon.SetActive(true);
+                Instantiate(playerHealthIcon);
+                playerHealthList.Add(playerHealthIcon);
+            }
         }
     }
 

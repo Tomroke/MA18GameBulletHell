@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class FiringScript: MonoBehaviour
 {
-    [SerializeField]
-    private GameObject shotPrefab;
 
     private float startAngle;
 
@@ -16,34 +14,41 @@ public class FiringScript: MonoBehaviour
 
     private float rateOfFire;
 
-    private float cooldown;
+    private float coolDownPerSec;
 
     private int ammoAmount;
 
-    private int bulletAmount;
+    private int bulletsPerShot;
+
+    private Sprite bulletSpite;
+
+    private float spriteScale;
+
+    private GameObject bulletObject;
 
     private bool enemyShots = false;
-
-    private bool isAllowedToAttack = true;
 
     private Vector3 shootersCurrentPosition;
 
     List<GameObject> ammoBelt = new List<GameObject>();
 
-    private float fireDirectionY = -9.0f;
+    private void Awake()
+    {
+        bulletObject = Resources.Load<GameObject>("Prefab/ProjectileOne");
+    }
 
     void Start()
     {
         InitiateAmmo();
-        cooldown = 0f;
+        coolDownPerSec = 0f;
     }
 
 
     void Update()
     {
-        if (cooldown > 0)
+        if (coolDownPerSec > 0)
         {
-            cooldown -= (Time.deltaTime);
+            coolDownPerSec -= (Time.deltaTime);
         } 
 
     }
@@ -53,12 +58,14 @@ public class FiringScript: MonoBehaviour
     {
         for (int i = 0; i < ammoAmount; i++)
         {
-            GameObject bullet = Instantiate(shotPrefab, gameObject.transform.position, Quaternion.identity);
-            if (bullet != null)
+            bulletObject.GetComponent<SpriteRenderer>().sprite = bulletSpite;
+            bulletObject.GetComponent<Transform>().localScale = new Vector3(spriteScale, spriteScale, 0);
+            GameObject bulletsPerShot = Instantiate(bulletObject, gameObject.transform.position, Quaternion.identity);
+            if (bulletsPerShot != null)
             {
-                bullet.GetComponent<Rigidbody2D>().GetComponent<ShotScript>().IsEnemyShot = enemyShots;
-                bullet.SetActive(false);
-                ammoBelt.Add(bullet);
+                bulletsPerShot.GetComponent<Rigidbody2D>().GetComponent<ShotScript>().IsEnemyShot = enemyShots;
+                bulletsPerShot.SetActive(false);
+                ammoBelt.Add(bulletsPerShot);
             }
         }
     }
@@ -68,17 +75,17 @@ public class FiringScript: MonoBehaviour
     {
         if (CanAttack)
         {
-            cooldown = rateOfFire;
+            coolDownPerSec = rateOfFire;
             SpawnProjectile();
         }
     }
 
     private void SpawnProjectile()
     {
-        float angleStep = (endAngle - startAngle) / (bulletAmount-1);
+        float angleStep = (endAngle - startAngle) / (bulletsPerShot-1);
         float angle = startAngle;
 
-            for (int i = 0; i < bulletAmount; i++)
+            for (int i = 0; i < bulletsPerShot; i++)
             {
                 float projectileDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f) * radius;
                 float projectileDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f) * radius;
@@ -97,11 +104,11 @@ public class FiringScript: MonoBehaviour
 
     public GameObject GetAmmo()
     {
-        foreach (GameObject bullet in ammoBelt)
+        foreach (GameObject bulletsPerShot in ammoBelt)
         {
-            if (!bullet.gameObject.activeInHierarchy)
+            if (!bulletsPerShot.gameObject.activeInHierarchy)
             {
-                return bullet;
+                return bulletsPerShot;
             }
             
         }
@@ -111,7 +118,7 @@ public class FiringScript: MonoBehaviour
 
     public bool CanAttack
     {
-        get { return cooldown <= 0f; }
+        get { return coolDownPerSec <= 0f; }
     }
 
 
@@ -124,38 +131,86 @@ public class FiringScript: MonoBehaviour
         }
     }
 
-
-    public void SetFireRules(float rateOfFire, float cooldown, int bulletAmount, int ammo, bool enemy, float startAngle, float endAngle)
+    //Sets enemies firerules
+    public void SetFireRules(float rateOfFire,
+                             float coolDownPerSec,
+                             int bulletsPerShot,
+                             int ammoAmount,
+                             bool enemyShots,
+                             float startAngle,
+                             float endAngle,
+                             Sprite bulletSpite,
+                             float bulletSpeed,
+                             int bulletDamage,
+                             float spriteScale)
     {
+
         this.rateOfFire = rateOfFire;
 
-        this.cooldown = cooldown;
+        this.coolDownPerSec = coolDownPerSec;
 
-        this.bulletAmount = bulletAmount;
+        this.bulletsPerShot = bulletsPerShot;
 
-        ammoAmount = ammo;
+        this.ammoAmount = ammoAmount;
 
-        enemyShots = enemy;
+        this.enemyShots = enemyShots;
 
         this.startAngle = startAngle;
 
         this.endAngle = endAngle;
+
+        this.bulletSpite = bulletSpite;
+
+        this.spriteScale = spriteScale;
+
+        if (bulletObject != null)
+        {
+
+        bulletObject.GetComponent<ShotScript>().SetSpeed = bulletSpeed;
+
+        bulletObject.GetComponent<ShotScript>().SetDamage = bulletDamage;
+
+        }
+
     }
 
 
-    public void SetFireRules(float rateOfFire, float cooldown, int bulletAmount, int ammo, float startAngle, float endAngle)
+    //Sets players firerules
+    public void SetFireRules(float rateOfFire,
+                             float coolDownPerSec,
+                             int bulletsPerShot,
+                             int ammoAmount,
+                             float startAngle,
+                             float endAngle,
+                             Sprite bulletSpite,
+                             float bulletSpeed,
+                             int bulletDamage,
+                             float spriteScale)
     {
         this.rateOfFire = rateOfFire;
 
-        this.cooldown = cooldown;
+        this.coolDownPerSec = coolDownPerSec;
 
-        this.bulletAmount = bulletAmount;
+        this.bulletsPerShot = bulletsPerShot;
 
-        ammoAmount = ammo;
+        this.ammoAmount = ammoAmount;
 
         this.startAngle = startAngle;
 
         this.endAngle = endAngle;
+
+        this.bulletSpite = bulletSpite;
+
+        this.spriteScale = spriteScale;
+
+        if (bulletObject != null)
+        {
+
+        bulletObject.GetComponent<ShotScript>().SetSpeed = bulletSpeed;
+
+        bulletObject.GetComponent<ShotScript>().SetDamage = bulletDamage;
+
+        }
     }
 
 }

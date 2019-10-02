@@ -4,19 +4,12 @@ using UnityEngine;
 
 public class ShotScript : MonoBehaviour
 {
-    [Header("Private Variables")]
-    [SerializeField]
-    [Range(0.1f, 10.0f)]
-    private float damage = 1.0f;
+    private int damage = 1;
+    private float speed = 3.0f;
+    private Vector2 movementDirection;
 
     [SerializeField]
     private bool isEnemyShot = false;
-
-    [SerializeField]
-    [Range(0.0f, 10.0f)]
-    private float speed = 3.0f;
-
-    private Vector2 movementDirection;
 
     private void Update()
     {
@@ -35,7 +28,16 @@ public class ShotScript : MonoBehaviour
         set { isEnemyShot = value; }
     }
 
-    public float DamageAmount()
+    public float SetSpeed
+    {
+        set { speed = value; }
+    }
+    public int SetDamage
+    {
+        set { damage = value; }
+    }
+
+    public int DamageAmount()
     {
         return damage;
     }
