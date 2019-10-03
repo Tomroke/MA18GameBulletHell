@@ -30,8 +30,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3979193104543706010}
-  m_LocalRotation: {x: 0, y: 0, z: 0.78252673, w: 0.622617}
-  m_LocalPosition: {x: 1.7781891, y: -7.4640536, z: 0}
+  m_LocalRotation: {x: 0, y: -0, z: -0.8948817, w: -0.4463034}
+  m_LocalPosition: {x: 5.4283504, y: 3.620528, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -171,6 +171,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   isEnemy: 1
+  flashColour: {r: 0, g: 0, b: 0, a: 0}
+  normalColour: {r: 0, g: 0, b: 0, a: 0}
+  numFlashes: 3
+  iFrameSeconds: 3
+  flashSeconds: 0.08
 --- !u!114 &8533210035951942064
 MonoBehaviour:
   m_ObjectHideFlags: 0

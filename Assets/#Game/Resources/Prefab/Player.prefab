@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6416a62c291a26147b874fb043fdb64c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 15, y: 15}
+  speed: {x: 10, y: 10}
   rateOfFire: 0.5
   bulletsPerShot: 1
   coolDownPerSec: 0.25
@@ -216,6 +216,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   isEnemy: 0
+  flashColour: {r: 1, g: 0, b: 0, a: 0.5882353}
+  normalColour: {r: 1, g: 1, b: 1, a: 1}
+  numFlashes: 3
+  iFrameSeconds: 1.8
+  flashSeconds: 0.1
 --- !u!114 &6315890946555351605
 MonoBehaviour:
   m_ObjectHideFlags: 0
