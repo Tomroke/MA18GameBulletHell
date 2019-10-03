@@ -39,6 +39,26 @@ public class PowerupScript : MonoBehaviour
     [SerializeField]
     private Sprite bulletSprite;
     
+    public void SetPowerUpVariables(float rateOfFire,
+                                    int bulletsPerShot,
+                                    float coolDownPerSec,
+                                    int ammoAmount,
+                                    float startAngle,
+                                    float endAngle,
+                                    float speed,
+                                    int damage,
+                                    Sprite bulletSprite)
+    {
+        this.rateOfFire = rateOfFire;
+        this.bulletsPerShot = bulletsPerShot;
+        this.coolDownPerSec = coolDownPerSec;
+        this.ammoAmount = ammoAmount;
+        this.startAngle = startAngle;
+        this.endAngle = endAngle;
+        this.speed = speed;
+        this.damage = damage;
+        this.bulletSprite = bulletSprite;
+    }
 
     public float getRateofFire()
     {

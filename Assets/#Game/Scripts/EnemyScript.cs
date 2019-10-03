@@ -43,6 +43,7 @@ public class EnemyScript : MonoBehaviour
 
     [SerializeField]
     private Sprite bulletSprite;
+
     [SerializeField]
     private float spriteScale;
 
@@ -68,7 +69,6 @@ public class EnemyScript : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-
         inCameraView = false;
         firing.DestroyAmmo();
         Destroy(gameObject);

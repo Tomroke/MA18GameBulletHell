@@ -10,14 +10,20 @@ public class EnemySpawnScript : MonoBehaviour
     private List<Transform> spawnPoints = new List<Transform>();
 
     [SerializeField]
-    private float spawnDelay = 10.0f;
-    
+    private float enemySpawnDelay = 10.0f;
+
+    [SerializeField]
+    private float powerUpSpawnDelay = 10.0f;
+
     private GameObject enemyPrefabOne;
     private GameObject enemyPrefabTwo;
     private GameObject enemyPrefabBoss;
 
+    private GameObject powerup;
+
     private bool bossNotActive = true;
     private int previousNumb;
+
 
     private void Start()
     {
@@ -25,17 +31,30 @@ public class EnemySpawnScript : MonoBehaviour
         enemyPrefabTwo = Resources.Load<GameObject>("Prefab/Enemy02");
         enemyPrefabBoss = Resources.Load<GameObject>("Prefab/Boss01");
 
+        powerup = Resources.Load<GameObject>("Prefab/Powerup01");
+
         StartCoroutine(SpawnEnemies());
     }
+
 
     IEnumerator SpawnEnemies()
     {
         while (bossNotActive)
         {
-            yield return new WaitForSeconds(spawnDelay);
+            StartCoroutine(instantiatePowerup());
+            yield return new WaitForSeconds(enemySpawnDelay);
             instantiateEnemy();
         }
     }
+
+
+    IEnumerator instantiatePowerup()
+    {
+
+        yield return new WaitForSeconds(powerUpSpawnDelay);
+        instantiatePowerUp();
+    }
+
 
     private void instantiateEnemy()
     {
@@ -66,7 +85,19 @@ public class EnemySpawnScript : MonoBehaviour
         }
     }
 
-    public int EnemyType()
+
+    private void instantiatePowerUp()
+    {
+        int newNumb = RandomIndex();
+        powerup.GetComponent<MoveScript>().SetParentPosition(spawnPoints[newNumb].transform.position);
+        powerup.transform.position = spawnPoints[newNumb].transform.position;
+        powerup.GetComponent<MoveScript>().InitiateMovement();
+        powerup.SetActive(true);
+        Instantiate(powerup);
+    }
+
+
+    private int EnemyType()
     {
         int enemyNum = UnityEngine.Random.Range(1, 6);
         if (enemyNum <= 3)
@@ -81,9 +112,9 @@ public class EnemySpawnScript : MonoBehaviour
         return 0;
     }
 
-    public int RandomIndex()
+
+    private int RandomIndex()
     {
         return UnityEngine.Random.Range(0, spawnPoints.Count-1);
     }
-
 }

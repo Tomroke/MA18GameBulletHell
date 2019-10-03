@@ -79,13 +79,21 @@ public class MoveScript : MonoBehaviour
         pathParent.transform.position = input;
     }
 
-    void OnDrawGizmos()
+    private void OnBecameInvisible()
     {
-        Gizmos.color = Color.red;
-
-        if (visualizePath != null)
+        if (gameObject.tag.Equals("Powerup"))
         {
-            visualizePath.gizmoDraw();
+            Destroy(gameObject);
         }
     }
+
+    //void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+
+    //    if (visualizePath != null)
+    //    {
+    //        visualizePath.gizmoDraw();
+    //    }
+    //}
 }

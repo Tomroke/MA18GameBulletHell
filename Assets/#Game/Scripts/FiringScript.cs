@@ -20,11 +20,17 @@ public class FiringScript: MonoBehaviour
 
     private int bulletsPerShot;
 
+    private float bulletSpeed;
+
+    private int bulletDamage;
+
     private Sprite bulletSprite;
 
     private float spriteScale;
 
     private GameObject bulletObject;
+
+    private GameObject ammoGameObject;
 
     private bool enemyShots = false;
 
@@ -35,6 +41,8 @@ public class FiringScript: MonoBehaviour
     private void Awake()
     {
         bulletObject = Resources.Load<GameObject>("Prefab/ProjectileOne");
+        ammoGameObject = GameObject.Find("AmmoBag");
+        Debug.Log(ammoGameObject);
     }
 
     void Start()
@@ -60,12 +68,15 @@ public class FiringScript: MonoBehaviour
         {
             bulletObject.GetComponent<SpriteRenderer>().sprite = bulletSprite;
             bulletObject.GetComponent<Transform>().localScale = new Vector3(spriteScale, spriteScale, 0);
-            GameObject bulletsPerShot = Instantiate(bulletObject, gameObject.transform.position, Quaternion.identity);
-            if (bulletsPerShot != null)
+            GameObject _Bullet = Instantiate(bulletObject, gameObject.transform.position, Quaternion.identity);
+            _Bullet.transform.SetParent(ammoGameObject.transform, false);
+            if (_Bullet != null)
             {
-                bulletsPerShot.GetComponent<Rigidbody2D>().GetComponent<ShotScript>().IsEnemyShot = enemyShots;
-                bulletsPerShot.SetActive(false);
-                ammoBelt.Add(bulletsPerShot);
+                _Bullet.GetComponent<Rigidbody2D>().GetComponent<ShotScript>().IsEnemyShot = enemyShots;
+                _Bullet.GetComponent<ShotScript>().SetDamage = bulletDamage;
+                _Bullet.GetComponent<ShotScript>().SetSpeed = bulletSpeed;
+                _Bullet.SetActive(false);
+                ammoBelt.Add(_Bullet);
             }
         }
     }
@@ -116,11 +127,11 @@ public class FiringScript: MonoBehaviour
 
     public GameObject GetAmmo()
     {
-        foreach (GameObject bulletsPerShot in ammoBelt)
+        foreach (GameObject _Bullet in ammoBelt)
         {
-            if (!bulletsPerShot.gameObject.activeInHierarchy)
+            if (!_Bullet.gameObject.activeInHierarchy)
             {
-                return bulletsPerShot;
+                return _Bullet;
             }
             
         }
@@ -175,14 +186,9 @@ public class FiringScript: MonoBehaviour
 
         this.spriteScale = spriteScale;
 
-        if (bulletObject != null)
-        {
+        this.bulletDamage = bulletDamage;
 
-        bulletObject.GetComponent<ShotScript>().SetSpeed = bulletSpeed;
-
-        bulletObject.GetComponent<ShotScript>().SetDamage = bulletDamage;
-
-        }
+        this.bulletSpeed = bulletSpeed;
 
     }
 
@@ -211,6 +217,10 @@ public class FiringScript: MonoBehaviour
 
         this.endAngle = endAngle;
 
+        this.bulletDamage = bulletDamage;
+
+        this.bulletSpeed = bulletSpeed;
+
         if (this.bulletSprite != bulletSprite)
         {
         this.bulletSprite = bulletSprite;
@@ -219,15 +229,6 @@ public class FiringScript: MonoBehaviour
         }
 
         this.spriteScale = spriteScale;
-
-        if (bulletObject != null)
-        {
-
-        bulletObject.GetComponent<ShotScript>().SetSpeed = bulletSpeed;
-
-        bulletObject.GetComponent<ShotScript>().SetDamage = bulletDamage;
-
-        }
 
 
     }
