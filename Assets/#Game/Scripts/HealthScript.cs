@@ -8,11 +8,9 @@ public class HealthScript : MonoBehaviour
     [SerializeField]
     private int health = 1;
 
-
     [Header("Enemy Variables")]
     [SerializeField]
     private bool isEnemy = true;
-
 
     [Header("Player Variables")]
     [SerializeField]
@@ -31,6 +29,8 @@ public class HealthScript : MonoBehaviour
     private float flashSeconds = 0.08f;
 
     private bool iFrame = false;
+
+    private int collisionDamage = 1;
 
     private SpriteRenderer playerSprite;
 
@@ -84,8 +84,8 @@ public class HealthScript : MonoBehaviour
         {
             if (!enemy.IsEnemy())
             {
-                Damage(1);
-                enemy.Damage(1);
+                Damage(collisionDamage);
+                enemy.Damage(collisionDamage);
             }
         }
     }

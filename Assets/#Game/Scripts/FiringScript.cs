@@ -42,7 +42,6 @@ public class FiringScript: MonoBehaviour
     {
         bulletObject = Resources.Load<GameObject>("Prefab/ProjectileOne");
         ammoGameObject = GameObject.Find("AmmoBag");
-        Debug.Log(ammoGameObject);
     }
 
     void Start()

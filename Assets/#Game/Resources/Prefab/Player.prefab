@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: {x: 10, y: 10}
-  rateOfFire: 0.5
+  rateOfFire: 0.4
   bulletsPerShot: 1
   coolDownPerSec: 0.25
   ammoAmount: 50

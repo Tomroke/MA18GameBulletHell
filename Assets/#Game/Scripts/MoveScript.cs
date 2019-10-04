@@ -87,13 +87,13 @@ public class MoveScript : MonoBehaviour
         }
     }
 
-    //void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
 
-    //    if (visualizePath != null)
-    //    {
-    //        visualizePath.gizmoDraw();
-    //    }
-    //}
+        if (visualizePath != null)
+        {
+            visualizePath.gizmoDraw();
+        }
+    }
 }

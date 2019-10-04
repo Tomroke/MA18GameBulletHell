@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawnScript : MonoBehaviour
+public class EntitySpawnScript : MonoBehaviour
 {
     [Header("Private Variables")]
     [SerializeField]
@@ -20,6 +20,7 @@ public class EnemySpawnScript : MonoBehaviour
     private GameObject enemyPrefabBoss;
 
     private GameObject powerup;
+    private int powerUpNum = 1;
 
     private bool bossNotActive = true;
     private int previousNumb;
@@ -95,7 +96,6 @@ public class EnemySpawnScript : MonoBehaviour
         powerup.SetActive(true);
         Instantiate(powerup);
     }
-
 
     private int EnemyType()
     {
