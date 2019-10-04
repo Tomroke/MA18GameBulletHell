@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5804a4ea30eb8884da07d3873ce8967b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PowerupType: 1
   rateOfFire: 0.8
   bulletsPerShot: 2
   coolDownPerSec: 0.3

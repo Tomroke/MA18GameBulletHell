@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class PowerupScript : MonoBehaviour
 {
-    [Range(0.1f, 5.0f)]
+    [Header("Power up: New or Upgrade")]
+    [SerializeField]
+    private bool PowerupType = false;
+
+    [Header("Variables")]
+    [Range(0f, 5.0f)]
     [SerializeField]
     private float rateOfFire;
 
-    [Range(1, 100)]
+    [Range(0, 100)]
     [SerializeField]
     private int bulletsPerShot;
 
-    [Range(0.1f, 5.0f)]
+    [Range(0f, 5.0f)]
     [SerializeField]
     private float coolDownPerSec;
 
-    [Range(1, 50)]
+    [Range(0, 50)]
     [SerializeField]
     private int ammoAmount;
 
@@ -38,26 +43,10 @@ public class PowerupScript : MonoBehaviour
 
     [SerializeField]
     private Sprite bulletSprite;
-    
-    public void SetPowerUpVariables(float rateOfFire,
-                                    int bulletsPerShot,
-                                    float coolDownPerSec,
-                                    int ammoAmount,
-                                    float startAngle,
-                                    float endAngle,
-                                    float speed,
-                                    int damage,
-                                    Sprite bulletSprite)
+
+    public bool getPowerupTypeBool()
     {
-        this.rateOfFire = rateOfFire;
-        this.bulletsPerShot = bulletsPerShot;
-        this.coolDownPerSec = coolDownPerSec;
-        this.ammoAmount = ammoAmount;
-        this.startAngle = startAngle;
-        this.endAngle = endAngle;
-        this.speed = speed;
-        this.damage = damage;
-        this.bulletSprite = bulletSprite;
+        return PowerupType;
     }
 
     public float getRateofFire()

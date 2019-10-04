@@ -53,8 +53,8 @@ public class HealthScript : MonoBehaviour
 
             if (gameObject.tag.Equals("Player") && health > 0)
             {
-                Debug.Log(playerHealthList[health - 1]);
-                GameObject temp = playerHealthList[health - 1];
+                Debug.Log(playerHealthList[health]);
+                GameObject temp = playerHealthList[health];
                 temp.SetActive(false);
                 StartCoroutine(IFrames());
             }

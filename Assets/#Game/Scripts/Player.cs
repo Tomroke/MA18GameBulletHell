@@ -171,7 +171,7 @@ public class Player : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         PowerupScript powerUp = collision.gameObject.GetComponent<PowerupScript>();
-        if (powerUp != null)
+        if (powerUp != null && powerUp.getPowerupTypeBool())
         {
             rateOfFire = powerUp.getRateofFire();
             coolDownPerSec = powerUp.getCoolDownPerSec();
@@ -182,6 +182,20 @@ public class Player : MonoBehaviour
             bulletSprite = powerUp.getSprite();
             bulletSpeed = powerUp.getSpeed();
             bulletDamage = powerUp.getDamage();
+
+            SetFiringRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, spriteScale);
+
+            Destroy(powerUp.gameObject);
+        }
+
+        else if (powerUp != null && !powerUp.getPowerupTypeBool())
+        {
+            rateOfFire += powerUp.getRateofFire();
+            coolDownPerSec += powerUp.getCoolDownPerSec();
+            bulletsPerShot += powerUp.getBulletAmount();
+            bulletSprite = powerUp.getSprite();
+            bulletSpeed += powerUp.getSpeed();
+            bulletDamage += powerUp.getDamage();
 
             SetFiringRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, spriteScale);
 
