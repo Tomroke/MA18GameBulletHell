@@ -15,12 +15,12 @@ PrefabInstance:
     - target: {fileID: 2073586461242839621, guid: d48e430f4bc35c444836aa5cf3d27267,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.8
+      value: 4.54
       objectReference: {fileID: 0}
     - target: {fileID: 2073586461242839621, guid: d48e430f4bc35c444836aa5cf3d27267,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.351676
+      value: 4.63
       objectReference: {fileID: 0}
     - target: {fileID: 2073586461242839621, guid: d48e430f4bc35c444836aa5cf3d27267,
         type: 3}
@@ -67,20 +67,44 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1209770528, guid: d48e430f4bc35c444836aa5cf3d27267, type: 3}
+      propertyPath: speed
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2073586461242839618, guid: d48e430f4bc35c444836aa5cf3d27267,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2073586461242839618, guid: d48e430f4bc35c444836aa5cf3d27267,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.6878892
+      objectReference: {fileID: 0}
+    - target: {fileID: 2073586461242839622, guid: d48e430f4bc35c444836aa5cf3d27267,
+        type: 3}
+      propertyPath: PowerupType
+      value: upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 2073586461242839622, guid: d48e430f4bc35c444836aa5cf3d27267,
+        type: 3}
+      propertyPath: rateOfFire
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 2073586461242839622, guid: d48e430f4bc35c444836aa5cf3d27267,
         type: 3}
       propertyPath: bulletsPerShot
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2073586461242839622, guid: d48e430f4bc35c444836aa5cf3d27267,
+        type: 3}
+      propertyPath: ammoAmount
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2073586461242839622, guid: d48e430f4bc35c444836aa5cf3d27267,
         type: 3}
       propertyPath: startAngle
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2073586461242839622, guid: d48e430f4bc35c444836aa5cf3d27267,
-        type: 3}
-      propertyPath: ammoAmount
-      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2073586461242839622, guid: d48e430f4bc35c444836aa5cf3d27267,
         type: 3}
@@ -101,28 +125,7 @@ PrefabInstance:
         type: 3}
       propertyPath: bulletSprite
       value: 
-      objectReference: {fileID: -8772044731828060149, guid: d94695bc85ee6ae42a24a544e0fd1c47,
+      objectReference: {fileID: 6585595596563202447, guid: d94695bc85ee6ae42a24a544e0fd1c47,
         type: 3}
-    - target: {fileID: 2073586461242839622, guid: d48e430f4bc35c444836aa5cf3d27267,
-        type: 3}
-      propertyPath: PowerupType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2073586461242839618, guid: d48e430f4bc35c444836aa5cf3d27267,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -664487528656974205, guid: d94695bc85ee6ae42a24a544e0fd1c47,
-        type: 3}
-    - target: {fileID: 2073586461242839623, guid: d48e430f4bc35c444836aa5cf3d27267,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.24
-      objectReference: {fileID: 0}
-    - target: {fileID: 2073586461242839623, guid: d48e430f4bc35c444836aa5cf3d27267,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.24
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d48e430f4bc35c444836aa5cf3d27267, type: 3}

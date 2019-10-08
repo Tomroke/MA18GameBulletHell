@@ -33,11 +33,11 @@ public class Player : MonoBehaviour
     [Range(1, 50)]
     private float bulletSpeed = 3.0f;
 
-    [Range(0, 360)]
+    [Range(-360, 360)]
     [SerializeField]
     private float startAngle;
 
-    [Range(0, 360)]
+    [Range(-360, 360)]
     [SerializeField]
     private float endAngle; 
 
@@ -171,7 +171,7 @@ public class Player : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         PowerupScript powerUp = collision.gameObject.GetComponent<PowerupScript>();
-        if (powerUp != null && powerUp.getPowerupTypeBool())
+        if (powerUp != null && powerUp.getPowerupType().Equals("new"))
         {
             rateOfFire = powerUp.getRateofFire();
             coolDownPerSec = powerUp.getCoolDownPerSec();
@@ -188,7 +188,7 @@ public class Player : MonoBehaviour
             Destroy(powerUp.gameObject);
         }
 
-        else if (powerUp != null && !powerUp.getPowerupTypeBool())
+        else if (powerUp != null && powerUp.getPowerupType().Equals("upgrade"))
         {
             rateOfFire += powerUp.getRateofFire();
             coolDownPerSec += powerUp.getCoolDownPerSec();

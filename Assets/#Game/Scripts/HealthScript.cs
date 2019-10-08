@@ -51,9 +51,9 @@ public class HealthScript : MonoBehaviour
         {
             health -= damageAmount;
 
-            if (gameObject.tag.Equals("Player") && health > 0)
+            if (gameObject.tag.Equals("Player") && health >= 0)
             {
-                Debug.Log(playerHealthList[health]);
+                //Debug.Log(playerHealthList[health]);
                 GameObject temp = playerHealthList[health];
                 temp.SetActive(false);
                 StartCoroutine(IFrames());
@@ -62,6 +62,11 @@ public class HealthScript : MonoBehaviour
 
         if (health <= 0)
         {
+            if (!gameObject.tag.Equals("Player"))
+            {
+                GameManager.Instance.IncreaseScore();
+            }
+            //Change this so the bullets remains after the shooter is destroyed.
             gameObject.GetComponent<FiringScript>().DestroyAmmo();
             Destroy(gameObject);
         }

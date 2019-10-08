@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Fire
   - Powerup
+  - Boss
+  - UI
+  - Score
   layers:
   - Default
   - TransparentFX

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PowerupScript : MonoBehaviour
 {
-    [Header("Power up: New or Upgrade")]
+    [Header("Power up: new or upgrade")]
     [SerializeField]
-    private bool PowerupType = false;
+    private string PowerupType;
 
     [Header("Variables")]
     [Range(0f, 5.0f)]
@@ -25,11 +25,11 @@ public class PowerupScript : MonoBehaviour
     [SerializeField]
     private int ammoAmount;
 
-    [Range(0, 360)]
+    [Range(-360, 360)]
     [SerializeField]
     private float startAngle;
 
-    [Range(0, 360)]
+    [Range(-360, 360)]
     [SerializeField]
     private float endAngle;
 
@@ -44,7 +44,7 @@ public class PowerupScript : MonoBehaviour
     [SerializeField]
     private Sprite bulletSprite;
 
-    public bool getPowerupTypeBool()
+    public string getPowerupType()
     {
         return PowerupType;
     }

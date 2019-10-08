@@ -34,11 +34,25 @@ public class MoveScript : MonoBehaviour
 
     [SerializeField]
     private LeanTweenType easeType;
+
+    private GameObject bossPathTwo;
+    private int currentpath = 1;
+
     private void Start()
     {
         pathParent.transform.position = gameObject.transform.position;
-        InitiateMovement();
+        if (gameObject.tag.Equals("Boss"))
+        {
+            bossPathTwo = Resources.Load<GameObject>("Prefab/BossPath02");
+            InitiateBossMovement();
+        }
+        else
+        {
+            InitiateMovement();
+        }
+
     }
+
 
     public void InitiateMovement()
     {
@@ -73,6 +87,46 @@ public class MoveScript : MonoBehaviour
                 .setDelay(startingTime);
         }
     }
+
+
+    private void InitiateBossMovement()
+    {
+        LeanTween.rotateAround(gameObject, Vector3.forward, 360, 6.0f).setLoopCount(10);
+
+        if (currentpath == 1)
+        {
+            currentpath++;
+            pathTransformers = pathParent.GetComponentsInChildren<Transform>();
+            path = new Vector3[pathTransformers.Length - 1];
+        }
+        else if (currentpath == 2)
+        {
+            currentpath--;
+            pathTransformers = bossPathTwo.GetComponentsInChildren<Transform>();
+            path = new Vector3[pathTransformers.Length - 1];
+        }
+        
+
+        if (pathTransformers != null)
+        {
+            for (int i = 1; i < pathTransformers.Length; i++)
+            {
+                path[i - 1] = pathTransformers[i].position;
+            }
+        }
+
+        visualizePath = new LTSpline(path);
+
+        if (path != null)
+        {
+            LTDescr tween = LeanTween.moveSpline(gameObject, path, speed)
+                .setSpeed(speed)
+                .setEase(easeType)
+                .setDelay(startingTime)
+                .setOnComplete(InitiateBossMovement);
+        }
+    }
+
 
     public void SetParentPosition (Vector3 input)
     {

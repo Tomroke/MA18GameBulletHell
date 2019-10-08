@@ -70,8 +70,11 @@ public class EnemyScript : MonoBehaviour
     private void OnBecameInvisible()
     {
         inCameraView = false;
-        firing.DestroyAmmo();
-        Destroy(gameObject);
+        if (!gameObject.tag.Equals("Boss"))
+        {
+            firing.DestroyAmmo();
+            Destroy(gameObject);
+        }
     }
 
 }

@@ -13,6 +13,9 @@ public class EntitySpawnScript : MonoBehaviour
     private float enemySpawnDelay = 10.0f;
 
     [SerializeField]
+    private float bossSpawnTimer = 10.0f;
+
+    [SerializeField]
     private float powerUpSpawnDelay = 10.0f;
 
     private GameObject enemyPrefabOne;
@@ -40,6 +43,7 @@ public class EntitySpawnScript : MonoBehaviour
 
     IEnumerator SpawnEnemies()
     {
+        StartCoroutine(bossCountdown());
         while (bossNotActive)
         {
             StartCoroutine(instantiatePowerup());
@@ -48,6 +52,12 @@ public class EntitySpawnScript : MonoBehaviour
         }
     }
 
+    IEnumerator bossCountdown()
+    {
+        yield return new WaitForSeconds(bossSpawnTimer);
+        bossNotActive = false;
+        instantiateBoss();
+    }
 
     IEnumerator instantiatePowerup()
     {
@@ -95,6 +105,15 @@ public class EntitySpawnScript : MonoBehaviour
         powerup.GetComponent<MoveScript>().InitiateMovement();
         powerup.SetActive(true);
         Instantiate(powerup);
+    }
+
+    private void instantiateBoss()
+    {
+        enemyPrefabBoss.GetComponent<MoveScript>().SetParentPosition(spawnPoints[7].transform.position);
+        enemyPrefabBoss.transform.position = spawnPoints[7].transform.position;
+        enemyPrefabBoss.GetComponent<MoveScript>().InitiateMovement();
+        enemyPrefabBoss.SetActive(true);
+        Instantiate(enemyPrefabBoss);
     }
 
     private int EnemyType()
