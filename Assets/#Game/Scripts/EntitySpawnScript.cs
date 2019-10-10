@@ -18,11 +18,13 @@ public class EntitySpawnScript : MonoBehaviour
     [SerializeField]
     private float powerUpSpawnDelay = 10.0f;
 
-    private GameObject enemyPrefabOne;
-    private GameObject enemyPrefabTwo;
+    [SerializeField]
+    private List<GameObject> enemyPrefabs;
+
     private GameObject enemyPrefabBoss;
 
-    private GameObject powerup;
+    [SerializeField]
+    private List<GameObject> powerups;
     private int powerUpNum = 1;
 
     private bool bossNotActive = true;
@@ -31,11 +33,9 @@ public class EntitySpawnScript : MonoBehaviour
 
     private void Start()
     {
-        enemyPrefabOne = Resources.Load<GameObject>("Prefab/Enemy01");
-        enemyPrefabTwo = Resources.Load<GameObject>("Prefab/Enemy02");
         enemyPrefabBoss = Resources.Load<GameObject>("Prefab/Boss01");
 
-        powerup = Resources.Load<GameObject>("Prefab/Powerup01");
+        //powerups = new List<GameObject>();
 
         StartCoroutine(SpawnEnemies());
     }
@@ -48,7 +48,7 @@ public class EntitySpawnScript : MonoBehaviour
         {
             StartCoroutine(instantiatePowerup());
             yield return new WaitForSeconds(enemySpawnDelay);
-            instantiateEnemy();
+            instantiateGameObject(GenerateRandomEnemy(), RandomIndex());
         }
     }
 
@@ -56,81 +56,38 @@ public class EntitySpawnScript : MonoBehaviour
     {
         yield return new WaitForSeconds(bossSpawnTimer);
         bossNotActive = false;
-        instantiateBoss();
+        instantiateGameObject(enemyPrefabBoss, 6);
     }
 
     IEnumerator instantiatePowerup()
     {
-
         yield return new WaitForSeconds(powerUpSpawnDelay);
-        instantiatePowerUp();
+        instantiateGameObject(GenerateRandomPowerup(), RandomIndex());
     }
 
-
-    private void instantiateEnemy()
+    private GameObject GenerateRandomEnemy()
     {
-        bool enemyHasSpawned = false;
-        while (!enemyHasSpawned)
-        {
-            int newNumb = RandomIndex();
-            if (previousNumb != newNumb && EnemyType() == 1)
-            {
-                previousNumb = newNumb;
-                enemyPrefabOne.GetComponent<MoveScript>().SetParentPosition(spawnPoints[newNumb].transform.position);
-                enemyPrefabOne.transform.position = spawnPoints[newNumb].transform.position;
-                enemyPrefabOne.GetComponent<MoveScript>().InitiateMovement();
-                enemyPrefabOne.SetActive(true);
-                Instantiate(enemyPrefabOne);
-                enemyHasSpawned = true;
-            }
-            if (previousNumb != newNumb && EnemyType() == 2)
-            {
-                previousNumb = newNumb;
-                enemyPrefabTwo.GetComponent<MoveScript>().SetParentPosition(spawnPoints[newNumb].transform.position);
-                enemyPrefabTwo.transform.position = spawnPoints[newNumb].transform.position;
-                enemyPrefabTwo.GetComponent<MoveScript>().InitiateMovement();
-                enemyPrefabTwo.SetActive(true);
-                Instantiate(enemyPrefabTwo);
-                enemyHasSpawned = true;
-            }
-        }
+        int tmp = UnityEngine.Random.Range(0, enemyPrefabs.Count);
+        return enemyPrefabs[tmp];
     }
 
-
-    private void instantiatePowerUp()
+    private GameObject GenerateRandomPowerup()
     {
-        int newNumb = RandomIndex();
-        powerup.GetComponent<MoveScript>().SetParentPosition(spawnPoints[newNumb].transform.position);
-        powerup.transform.position = spawnPoints[newNumb].transform.position;
-        powerup.GetComponent<MoveScript>().InitiateMovement();
-        powerup.SetActive(true);
-        Instantiate(powerup);
+        int tmp = UnityEngine.Random.Range(0, powerups.Count);
+        return powerups[tmp];
+        
     }
 
-    private void instantiateBoss()
+    private void instantiateGameObject(GameObject gameObject, int listIndex)
     {
-        enemyPrefabBoss.GetComponent<MoveScript>().SetParentPosition(spawnPoints[7].transform.position);
-        enemyPrefabBoss.transform.position = spawnPoints[7].transform.position;
-        enemyPrefabBoss.GetComponent<MoveScript>().InitiateMovement();
-        enemyPrefabBoss.SetActive(true);
-        Instantiate(enemyPrefabBoss);
+        gameObject.GetComponent<MoveScript>().SetParentPosition(spawnPoints[listIndex].transform.position);
+        gameObject.transform.position = spawnPoints[listIndex].transform.position;
+        gameObject.GetComponent<MoveScript>().InitiateMovement();
+        gameObject.SetActive(true);
+        Instantiate(gameObject);
+        gameObject.SetActive(true);
+            
     }
-
-    private int EnemyType()
-    {
-        int enemyNum = UnityEngine.Random.Range(1, 6);
-        if (enemyNum <= 3)
-        {
-            return 1;
-        }
-
-        if (enemyNum >= 4)
-        {
-            return 2;
-        }
-        return 0;
-    }
-
 
     private int RandomIndex()
     {

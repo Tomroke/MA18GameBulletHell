@@ -49,9 +49,19 @@ public class EnemyScript : MonoBehaviour
 
     void Awake()
     {
-
         firing = GetComponent<FiringScript>();
-        firing.SetFireRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, true, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, spriteScale);
+        firing.SetFireRules(
+            rateOfFire, 
+            coolDownPerSec, 
+            bulletsPerShot, 
+            ammoAmount, 
+            true, 
+            startAngle, 
+            endAngle, 
+            bulletSprite, 
+            bulletSpeed, 
+            bulletDamage, 
+            spriteScale);
     }
 
     void Update()
@@ -70,6 +80,7 @@ public class EnemyScript : MonoBehaviour
     private void OnBecameInvisible()
     {
         inCameraView = false;
+
         if (!gameObject.tag.Equals("Boss"))
         {
             firing.DestroyAmmo();

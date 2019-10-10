@@ -14,8 +14,6 @@ public class ShotScript : MonoBehaviour
     private void Update()
     {
         transform.Translate(movementDirection * speed *Time.deltaTime);
-        //LeanTween.rotateAround(gameObject, Vector3.forward, 360, 6.0f).setLoopCount(10);
-        //transform.Rotate(Vector3.forward * 50 * Time.deltaTime, Space.World);
     }
 
     public void StartAnimation(Vector2 direction)

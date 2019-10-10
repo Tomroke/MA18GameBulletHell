@@ -47,9 +47,11 @@ public class Player : MonoBehaviour
     private float spriteScale;
 
     private Vector2 movement;
+    private GameObject fireButton;
     private Rigidbody2D rigidbodyComponent;
     private FiringScript fireing;
     private HealthScript health;
+
     private static Player _instance;
 
 
@@ -83,6 +85,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+
+        fireButton = GameObject.Find("FireButton");
 
         health = GetComponent<HealthScript>();
         if (health != null)
@@ -130,14 +134,14 @@ public class Player : MonoBehaviour
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    if (hit.collider != null && hit.collider.gameObject == GameObject.Find("FireButton"))
+                    if (hit.collider != null && hit.collider.gameObject == fireButton)
                     {
-                        Debug.Log("Touch Began");
+                        //Debug.Log("Touch Began");
                     }
                     break;
 
                 case TouchPhase.Stationary:
-                    if (hit.collider != null && hit.collider.gameObject == GameObject.Find("FireButton"))
+                    if (hit.collider != null && hit.collider.gameObject == fireButton)
                     {
                         if (fireing != null)
                         {
@@ -147,9 +151,9 @@ public class Player : MonoBehaviour
                     break;
 
                 case TouchPhase.Ended:
-                    if (hit.collider != null && hit.collider.gameObject == GameObject.Find("FireButton"))
+                    if (hit.collider != null && hit.collider.gameObject == fireButton)
                     {
-                        Debug.Log("Touch Ended");
+                        //Debug.Log("Touch Ended");
                     }
                     break;
             }

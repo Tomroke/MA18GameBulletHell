@@ -15,13 +15,14 @@ GameObject:
   - component: {fileID: 962471818470129082}
   - component: {fileID: 6246858902784345960}
   - component: {fileID: 962471818470129061}
+  - component: {fileID: -557113436731891914}
   m_Layer: 0
   m_Name: Boss01
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &962471818470129062
 Transform:
   m_ObjectHideFlags: 0
@@ -29,13 +30,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 962471818470129083}
-  m_LocalRotation: {x: 0, y: 0, z: 0.5907466, w: 0.8068572}
-  m_LocalPosition: {x: -11.070289, y: 5.1438923, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.0059464583, w: -0.99998236}
+  m_LocalPosition: {x: 4.250222, y: 2.7557797, z: 0}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 72.420006}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 246.45099}
 --- !u!212 &962471818470129063
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -177,3 +178,22 @@ MonoBehaviour:
   bulletSprite: {fileID: 8218418429780711021, guid: d94695bc85ee6ae42a24a544e0fd1c47,
     type: 3}
   spriteScale: 1
+--- !u!114 &-557113436731891914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962471818470129083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a76509af1958f3b4d86399b62661c3c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  isEnemy: 1
+  flashColour: {r: 1, g: 1, b: 1, a: 0.49019608}
+  normalColour: {r: 1, g: 1, b: 1, a: 1}
+  numFlashes: 3
+  iFrameSeconds: 2
+  flashSeconds: 0.08

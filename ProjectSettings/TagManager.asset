@@ -9,6 +9,7 @@ TagManager:
   - Boss
   - UI
   - Score
+  - LevelOverScreen
   layers:
   - Default
   - TransparentFX
@@ -55,6 +56,12 @@ TagManager:
   - name: Foreground
     uniqueID: 1569141899
     locked: 0
+  - name: Player
+    uniqueID: 2929017747
+    locked: 0
   - name: Enemies
     uniqueID: 2376464657
+    locked: 0
+  - name: GameOverScreen
+    uniqueID: 1904539009
     locked: 0

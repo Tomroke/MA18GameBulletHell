@@ -30,13 +30,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4293579426365482504}
-  m_LocalRotation: {x: -0, y: -0, z: 0.9342604, w: -0.35659143}
-  m_LocalPosition: {x: -7.1301055, y: -0.3277282, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.97560745, w: 0.2195228}
+  m_LocalPosition: {x: 0.8574736, y: -1.4837698, z: 0}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 168.289}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 154.638}
 --- !u!212 &1476391973518804684
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -148,8 +148,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   isEnemy: 1
-  flashColour: {r: 0, g: 0, b: 0, a: 0}
-  normalColour: {r: 0, g: 0, b: 0, a: 0}
+  flashColour: {r: 1, g: 1, b: 1, a: 0.49019608}
+  normalColour: {r: 1, g: 1, b: 1, a: 1}
   numFlashes: 3
   iFrameSeconds: 3
   flashSeconds: 0.08

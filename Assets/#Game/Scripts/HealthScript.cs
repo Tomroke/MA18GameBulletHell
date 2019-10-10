@@ -12,7 +12,7 @@ public class HealthScript : MonoBehaviour
     [SerializeField]
     private bool isEnemy = true;
 
-    [Header("Player Variables")]
+    [Header("Flash Colour Variables")]
     [SerializeField]
     Color flashColour;
 
@@ -34,6 +34,8 @@ public class HealthScript : MonoBehaviour
 
     private SpriteRenderer playerSprite;
 
+    private SpriteRenderer enemySprite;
+
     private GameObject playerHealthIcon;
     private List<GameObject> playerHealthList = new List<GameObject>();
 
@@ -42,6 +44,11 @@ public class HealthScript : MonoBehaviour
         if (gameObject.tag.Equals("Player"))
         {
             playerSprite = gameObject.GetComponent<SpriteRenderer>();
+        }
+
+        if (!gameObject.tag.Equals("Player"))
+        {
+            enemySprite = gameObject.GetComponent<SpriteRenderer>();
         }
     }
 
@@ -53,10 +60,15 @@ public class HealthScript : MonoBehaviour
 
             if (gameObject.tag.Equals("Player") && health >= 0)
             {
-                //Debug.Log(playerHealthList[health]);
                 GameObject temp = playerHealthList[health];
                 temp.SetActive(false);
-                StartCoroutine(IFrames());
+                StartCoroutine(IFrames(playerSprite));
+            }
+
+            if (!gameObject.tag.Equals("Player") && health >= 0)
+            {
+                Debug.Log("in IFrame");
+                StartCoroutine(ColourFlash(enemySprite));
             }
         }
 
@@ -66,6 +78,12 @@ public class HealthScript : MonoBehaviour
             {
                 GameManager.Instance.IncreaseScore();
             }
+
+            if (gameObject.tag.Equals("Player"))
+            {
+                GameManager.Instance.LevelOver();
+            }
+
             //Change this so the bullets remains after the shooter is destroyed.
             gameObject.GetComponent<FiringScript>().DestroyAmmo();
             Destroy(gameObject);
@@ -110,39 +128,56 @@ public class HealthScript : MonoBehaviour
         }
     }
 
-    IEnumerator IFrames()
+    IEnumerator IFrames(SpriteRenderer playersSprite)
     {
-        StartCoroutine(colourFlash());
+        StartCoroutine(ColourFlash(playersSprite));
         iFrame = true;
         yield return new WaitForSeconds(iFrameSeconds);
         iFrame = false;
     }
 
-    IEnumerator colourFlash()
+    IEnumerator ColourFlash(SpriteRenderer spriteRenderer)
     {
         int temp = 0;
-        if(playerSprite != null)
+        if (spriteRenderer != null)
         {
             while (temp < numFlashes)
             {
-                playerSprite.color = flashColour;
+                spriteRenderer.color = flashColour;
                 yield return new WaitForSeconds(flashSeconds);
-                playerSprite.color = normalColour;
+                spriteRenderer.color = normalColour;
                 yield return new WaitForSeconds(flashSeconds);
                 temp++;
             }
         }
-        
     }
 
-    public float Health()
+    public void ResetPlayerHealth()
     {
-        return health;
+            foreach (GameObject tmp in playerHealthList)
+            {
+                tmp.SetActive(true);
+            }
+    }
+
+    private void OnBecameVisible()
+    {
+        iFrame = false;
+    }
+
+    private void OnBecameInvisible()
+    {
+        iFrame = true;
     }
 
     public bool IsEnemy()
     {
         return isEnemy;
+    }
+
+    public void SetPlayerHealth(int tmp)
+    {
+        health = tmp;
     }
 
 }
