@@ -27,8 +27,6 @@ public class GameManager : MonoBehaviour
 
     private static GameManager _instance;
 
-    private static string sceneName = "Level1";
-
 
     public static GameManager Instance
     {
@@ -72,43 +70,15 @@ public class GameManager : MonoBehaviour
         scoreGameObject = GameObject.FindGameObjectWithTag("Score");
         scoreText = scoreGameObject.GetComponent<TMPro.TextMeshPro>();
 
-        HidePlayer();
-
     }
 
     void Start()
     {
-        if (!currentScene.Equals("MainMenu"))
-        {
-            Player.Instance.transform.position = Vector3.zero;
-
-            if (scoreText.text.Equals("SCORE"))
-            {
-                scoreText.SetText("0");
-            }
-        }
+        SceneManager.activeSceneChanged += HidePlayer;
     }
 
     private void Update()
     {
-        frames++;
-        if (frames % 30 == 0)
-        {
-        //Debug.Log(frames);
-            currentScene = SceneManager.GetActiveScene();
-            //Debug.Log(currentScene.name);
-
-            if (Player.Instance.gameObject.activeInHierarchy && currentScene.name.Equals("MainMenu") || currentScene.name.Equals("LoadScreen"))
-            {
-                HidePlayer();
-            }
-
-            else if (!Player.Instance.gameObject.activeInHierarchy && !currentScene.name.Equals("MainMenu") && !currentScene.name.Equals("LoadScreen"))
-            {
-                Player.Instance.gameObject.SetActive(true);
-                Player.Instance.gameObject.GetComponent<HealthScript>().InstansiatePlayerHealthBar();
-            }
-        }
 
         foreach (Touch touch in Input.touches)
         {
@@ -123,12 +93,12 @@ public class GameManager : MonoBehaviour
                     {
                         if (hit.collider == restartButton)
                         {
-                            Restart();
+                            ChangeScene("MainMenu");
                         }
 
                         if (hit.collider == menuButtons[0])
                         {
-                            Debug.Log(menuButtons[0]);
+                            ChangeScene("Level1");
                         }
 
                         if (hit.collider == menuButtons[1])
@@ -146,24 +116,50 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void HidePlayer()
+    private void HidePlayer(Scene arg0, Scene arg1)
     {
-        Player.Instance.gameObject.SetActive(false);
-        Player.Instance.gameObject.GetComponent<HealthScript>().HidePlayerHealth();
+        {
+            currentScene = SceneManager.GetActiveScene();
+
+            if (Player.Instance.gameObject.activeInHierarchy && currentScene.name.Equals("MainMenu") || currentScene.name.Equals("LoadScreen"))
+            {
+                Player.Instance.gameObject.SetActive(false);
+                Player.Instance.gameObject.GetComponent<HealthScript>().HidePlayerHealth();
+            }
+
+            else if (!Player.Instance.gameObject.activeInHierarchy && !currentScene.name.Equals("MainMenu") && !currentScene.name.Equals("LoadScreen"))
+            {
+                Player.Instance.gameObject.SetActive(true);
+                Player.Instance.gameObject.GetComponent<HealthScript>().ResetPlayerHealth();
+                Player.Instance.transform.position = Vector3.zero;
+
+                if (scoreText.text.Equals("SCORE"))
+                {
+                    scoreText.SetText("0");
+                }
+            }
+        }
+    }
+
+    public void ChangeScene(string sceneName)
+    {
+        if(sceneName != null)
+        {
+            SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        }
+        else
+        {
+            Debug.Log(sceneName);
+        }
     }
 
     public void LevelOver()
     {
         levelOver.SetActive(true);
         levelOverText = levelOver.GetComponentsInChildren<TMPro.TextMeshPro>();
-        levelOverText[0].SetText("Level 1");
+        levelOverText[0].SetText(SceneManager.GetActiveScene().name);
         levelOverText[1].SetText(score.ToString());
         StopAllCoroutines();
-    }
-
-    public void Restart()
-    {
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
 

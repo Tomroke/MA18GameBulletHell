@@ -122,6 +122,7 @@ public class HealthScript : MonoBehaviour
                 playerHealthIcon = Resources.Load<GameObject>("Prefab/PlayerLifePoint");
                 float tempPos = -8;
                 playerHealthIcon.GetComponent<Transform>().LeanSetPosX(tempPos+index);
+                playerHealthIcon.GetComponent<Transform>().LeanSetLocalPosZ(-1);
                 playerHealthIcon.SetActive(true);
                 playerHealthList.Add(Instantiate(playerHealthIcon));
             }
@@ -135,6 +136,7 @@ public class HealthScript : MonoBehaviour
             tmp.SetActive(true);
         }
     }
+
     public void HidePlayerHealth()
     {
         foreach (GameObject tmp in playerHealthList)
