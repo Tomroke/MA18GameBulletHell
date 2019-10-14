@@ -5,6 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject fadeToBlack;
+
+    private float fadeSpeed = 3.0f;
+
+    private SpriteRenderer spriteRendererController;
+
     private GameObject levelOver;
 
     private GameObject mainMenu;
@@ -24,6 +31,8 @@ public class GameManager : MonoBehaviour
     private int frames;
 
     private Scene currentScene;
+
+    private string sceneName;
 
     private static GameManager _instance;
 
@@ -67,6 +76,11 @@ public class GameManager : MonoBehaviour
             menuButtons = mainMenu.GetComponentsInChildren<BoxCollider2D>();
         }
 
+        if (fadeToBlack != null)
+        {
+            spriteRendererController = fadeToBlack.GetComponent<SpriteRenderer>();
+        }
+
         scoreGameObject = GameObject.FindGameObjectWithTag("Score");
         scoreText = scoreGameObject.GetComponent<TMPro.TextMeshPro>();
 
@@ -75,6 +89,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SceneManager.activeSceneChanged += HidePlayer;
+        SceneManager.activeSceneChanged += HideFadeObject;
+        SceneManager.activeSceneChanged += ChangeSceneWithEvent;
     }
 
     private void Update()
@@ -93,12 +109,14 @@ public class GameManager : MonoBehaviour
                     {
                         if (hit.collider == restartButton)
                         {
-                            ChangeScene("MainMenu");
+                            sceneName = "MainMenu";
+                            ChangeScene();
                         }
 
                         if (hit.collider == menuButtons[0])
                         {
-                            ChangeScene("Level1");
+                            sceneName = "Level1";
+                            ChangeScene();
                         }
 
                         if (hit.collider == menuButtons[1])
@@ -108,7 +126,7 @@ public class GameManager : MonoBehaviour
 
                         if (hit.collider == menuButtons[2])
                         {
-                            Debug.Log(menuButtons[2]);
+                            Application.Quit();
                         }
                     }
                     break;
@@ -141,16 +159,50 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ChangeScene(string sceneName)
+    private void HideFadeObject(Scene arg0, Scene arg1)
     {
-        if(sceneName != null)
+        fadeToBlack.SetActive(false);
+    }
+
+    public void ChangeSceneWithEvent(Scene arg0, Scene arg1)
+    {
+        ChangeScene();
+    }
+
+    public void ChangeScene()
+    {
+        if (sceneName != null && !SceneManager.GetActiveScene().name.Equals("level1"))
         {
-            SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+            if (SceneManager.GetActiveScene().name == "LoadScreen")
+            {
+                Color color = spriteRendererController.color;
+                color.a = 0;
+                spriteRendererController.color = color;
+                fadeToBlack.SetActive(true);
+                LeanTween.alpha(fadeToBlack, 1.0f, fadeSpeed).setEaseInBack()
+                    .setOnComplete(() => { SceneManager.LoadScene(sceneName, LoadSceneMode.Single); });
+                //SceneManager.LoadScene("LoadScreen", LoadSceneMode.Single);
+                //SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+            }
+            else
+            {
+                FadetoBlack();
+            }
+            
         }
         else
-        {
-            Debug.Log(sceneName);
-        }
+            {
+                Debug.Log(sceneName);
+            }
+    }
+
+    public void FadetoBlack()
+    {
+        Color color = spriteRendererController.color;
+        color.a = 0;
+        spriteRendererController.color = color;
+        fadeToBlack.SetActive(true);
+        LeanTween.alpha(fadeToBlack, 1.0f, fadeSpeed).setEaseInBack().setOnComplete(() => { SceneManager.LoadScene("LoadScreen", LoadSceneMode.Single); });
     }
 
     public void LevelOver()
@@ -168,5 +220,4 @@ public class GameManager : MonoBehaviour
         score++;
         scoreText.SetText(score.ToString());
     }
-
 }
