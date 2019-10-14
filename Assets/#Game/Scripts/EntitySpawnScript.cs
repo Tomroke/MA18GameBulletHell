@@ -35,8 +35,6 @@ public class EntitySpawnScript : MonoBehaviour
     {
         enemyPrefabBoss = Resources.Load<GameObject>("Prefab/Boss01");
 
-        //powerups = new List<GameObject>();
-
         StartCoroutine(SpawnEnemies());
     }
 

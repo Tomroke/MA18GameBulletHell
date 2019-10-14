@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
         health = GetComponent<HealthScript>();
         if (health != null)
         {
-            health.InstansiatePlayerHealthBar();
+            HealthBar();
         }
 
         fireing = GetComponent<FiringScript>();
@@ -100,6 +100,11 @@ public class Player : MonoBehaviour
             SetFiringRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, spriteScale);
         }
             
+    }
+
+    public void HealthBar()
+    {
+        health.InstansiatePlayerHealthBar();
     }
 
     public void SetFiringRules(float rateOfFire,    

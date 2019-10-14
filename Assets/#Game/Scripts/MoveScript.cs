@@ -22,9 +22,6 @@ public class MoveScript : MonoBehaviour
     private float speed = 3.0f;
 
     [SerializeField]
-    private float startingTime = 0;
-
-    [SerializeField]
     [Range(0, 8)]
     private int spriteRotationSpeed = 5;
 
@@ -40,23 +37,26 @@ public class MoveScript : MonoBehaviour
 
     private void Start()
     {
-        pathParent.transform.position = gameObject.transform.position;
-        if (gameObject.tag.Equals("Boss"))
+        if (pathParent != null)
         {
-            bossPathTwo = Resources.Load<GameObject>("Prefab/BossPath02");
-            InitiateBossMovement();
-        }
-        else
-        {
-            InitiateMovement();
+            pathParent.transform.position = gameObject.transform.position;
+            if (gameObject.tag.Equals("Boss"))
+            {
+                bossPathTwo = Resources.Load<GameObject>("Prefab/BossPath02");
+                InitiateBossMovement();
+            }
+            else
+            {
+                InitiateMovement();
+            }
         }
 
+        LeanTween.rotateAround(gameObject, Vector3.forward, 360, 6.0f).setLoopCount(10);
     }
 
 
     public void InitiateMovement()
     {
-        LeanTween.rotateAround(gameObject, Vector3.forward, 360, 6.0f).setLoopCount(10);
         pathTransformers = pathParent.GetComponentsInChildren<Transform>();
         path = new Vector3[pathTransformers.Length - 1];
 
@@ -83,16 +83,13 @@ public class MoveScript : MonoBehaviour
             LTDescr tween = LeanTween.moveSpline(gameObject, path, speed)
                 .setSpeed(speed)
                 .setEase(easeType)
-                .setLoopType(loopType)
-                .setDelay(startingTime);
+                .setLoopType(loopType);
         }
     }
 
 
     private void InitiateBossMovement()
     {
-        LeanTween.rotateAround(gameObject, Vector3.forward, 360, 6.0f).setLoopCount(10);
-
         if (currentpath == 1)
         {
             currentpath++;
@@ -122,7 +119,6 @@ public class MoveScript : MonoBehaviour
             LTDescr tween = LeanTween.moveSpline(gameObject, path, speed)
                 .setSpeed(speed)
                 .setEase(easeType)
-                .setDelay(startingTime)
                 .setOnComplete(InitiateBossMovement);
         }
     }

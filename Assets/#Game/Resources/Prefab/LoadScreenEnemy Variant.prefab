@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6072020575915825311
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4293579426365482504, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: m_Name
+      value: LoadScreenEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293579426365482504, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314028418208123159, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314028418208123159, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314028418208123159, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314028418208123159, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314028418208123159, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314028418208123159, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314028418208123159, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314028418208123159, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314028418208123159, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314028418208123159, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314028418208123159, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314028418208123159, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314028418208123159, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448150117208547591, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: rateOfFire
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448150117208547591, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: bulletsPerShot
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448150117208547591, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: ammoAmount
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448150117208547591, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: bulletSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448150117208547591, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: startAngle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448150117208547591, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: endAngle
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224352077846124799, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: pathParent
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224352077846124799, guid: 8b549e8628b0dea47ad367662b3d156b,
+        type: 3}
+      propertyPath: spriteRotationSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8b549e8628b0dea47ad367662b3d156b, type: 3}

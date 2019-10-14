@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 1476391973518804684}
   - component: {fileID: 5375401947294749474}
   - component: {fileID: 3812271777865067853}
-  - component: {fileID: 178642814417088822}
-  - component: {fileID: 3023451136477548959}
   - component: {fileID: 2448150117208547591}
+  - component: {fileID: 3023451136477548959}
   - component: {fileID: 7224352077846124799}
+  - component: {fileID: 178642814417088822}
   m_Layer: 0
   m_Name: Enemy02
   m_TagString: Untagged
@@ -30,13 +30,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4293579426365482504}
-  m_LocalRotation: {x: 0, y: 0, z: 0.97560745, w: 0.2195228}
-  m_LocalPosition: {x: 0.8574736, y: -1.4837698, z: 0}
+  m_LocalRotation: {x: 0, y: -0, z: 0.90879613, w: -0.41724062}
+  m_LocalPosition: {x: -0.10793458, y: 0.60750747, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 154.638}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 229.321}
 --- !u!212 &1476391973518804684
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -134,37 +134,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &178642814417088822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4293579426365482504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a76509af1958f3b4d86399b62661c3c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 5
-  isEnemy: 1
-  flashColour: {r: 1, g: 1, b: 1, a: 0.49019608}
-  normalColour: {r: 1, g: 1, b: 1, a: 1}
-  numFlashes: 3
-  iFrameSeconds: 3
-  flashSeconds: 0.08
---- !u!114 &3023451136477548959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4293579426365482504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19f1e012b027dcf4abac460f57b7de6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2448150117208547591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +157,18 @@ MonoBehaviour:
   bulletSprite: {fileID: 5663203546466250240, guid: d94695bc85ee6ae42a24a544e0fd1c47,
     type: 3}
   spriteScale: 3
+--- !u!114 &3023451136477548959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4293579426365482504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19f1e012b027dcf4abac460f57b7de6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7224352077846124799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,7 +184,25 @@ MonoBehaviour:
   pathParent: {fileID: 374256078932435742, guid: 5784222a181e9b642b055db3300794a0,
     type: 3}
   speed: 1.5
-  startingTime: 0
   spriteRotationSpeed: 5
   loopType: 1
   easeType: 0
+--- !u!114 &178642814417088822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4293579426365482504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a76509af1958f3b4d86399b62661c3c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  isEnemy: 1
+  flashColour: {r: 1, g: 1, b: 1, a: 0.49019608}
+  normalColour: {r: 1, g: 1, b: 1, a: 1}
+  numFlashes: 3
+  iFrameSeconds: 3
+  flashSeconds: 0.08

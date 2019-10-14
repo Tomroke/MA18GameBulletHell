@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 962471818470129063}
   - component: {fileID: 962471818470129080}
   - component: {fileID: 962471818470129081}
+  - component: {fileID: 962471818470129061}
   - component: {fileID: 962471818470129082}
   - component: {fileID: 6246858902784345960}
-  - component: {fileID: 962471818470129061}
   - component: {fileID: -557113436731891914}
   m_Layer: 0
   m_Name: Boss01
@@ -22,7 +22,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &962471818470129062
 Transform:
   m_ObjectHideFlags: 0
@@ -30,13 +30,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 962471818470129083}
-  m_LocalRotation: {x: -0, y: -0, z: 0.0059464583, w: -0.99998236}
+  m_LocalRotation: {x: 0, y: -0, z: 0.0059430166, w: -0.99998236}
   m_LocalPosition: {x: 4.250222, y: 2.7557797, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 246.45099}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 359.319}
 --- !u!212 &962471818470129063
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -124,6 +124,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &962471818470129061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962471818470129083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6aff3457dae8f40b911754f6ca5983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rateOfFire: 4
+  bulletsPerShot: 7
+  coolDownPerSec: 0.25
+  ammoAmount: 50
+  bulletDamage: 1
+  bulletSpeed: 2.4
+  startAngle: 140
+  endAngle: 220
+  bulletSprite: {fileID: 8218418429780711021, guid: d94695bc85ee6ae42a24a544e0fd1c47,
+    type: 3}
+  spriteScale: 0.8
 --- !u!114 &962471818470129082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,33 +174,9 @@ MonoBehaviour:
   pathParent: {fileID: 5235104105908787303, guid: 03ba4d4ea9167654cb750ac8286114fe,
     type: 3}
   speed: 1.8
-  startingTime: 0
   spriteRotationSpeed: 5
   loopType: 0
   easeType: 0
---- !u!114 &962471818470129061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 962471818470129083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f6aff3457dae8f40b911754f6ca5983, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rateOfFire: 1.8
-  bulletsPerShot: 7
-  coolDownPerSec: 0.25
-  ammoAmount: 50
-  bulletDamage: 1
-  bulletSpeed: 2.8
-  startAngle: 140
-  endAngle: 220
-  bulletSprite: {fileID: 8218418429780711021, guid: d94695bc85ee6ae42a24a544e0fd1c47,
-    type: 3}
-  spriteScale: 1
 --- !u!114 &-557113436731891914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76509af1958f3b4d86399b62661c3c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
+  health: 100
   isEnemy: 1
   flashColour: {r: 1, g: 1, b: 1, a: 0.49019608}
   normalColour: {r: 1, g: 1, b: 1, a: 1}

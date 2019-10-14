@@ -90,7 +90,7 @@ public class HealthScript : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         ShotScript shot = collision.gameObject.GetComponent<ShotScript>();
         if(shot != null && !iFrame)
@@ -128,6 +128,22 @@ public class HealthScript : MonoBehaviour
         }
     }
 
+    public void ResetPlayerHealth()
+    {
+        foreach (GameObject tmp in playerHealthList)
+        {
+            tmp.SetActive(true);
+        }
+    }
+    public void HidePlayerHealth()
+    {
+        foreach (GameObject tmp in playerHealthList)
+        {
+            tmp.SetActive(false);
+        }
+    }
+
+
     IEnumerator IFrames(SpriteRenderer playersSprite)
     {
         StartCoroutine(ColourFlash(playersSprite));
@@ -152,14 +168,6 @@ public class HealthScript : MonoBehaviour
         }
     }
 
-    public void ResetPlayerHealth()
-    {
-            foreach (GameObject tmp in playerHealthList)
-            {
-                tmp.SetActive(true);
-            }
-    }
-
     private void OnBecameVisible()
     {
         iFrame = false;
@@ -173,11 +181,6 @@ public class HealthScript : MonoBehaviour
     public bool IsEnemy()
     {
         return isEnemy;
-    }
-
-    public void SetPlayerHealth(int tmp)
-    {
-        health = tmp;
     }
 
 }
