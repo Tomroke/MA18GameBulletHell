@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
 
         if (fadeToBlack != null)
         {
+            fadeToBlack.SetActive(false);
             spriteRendererController = fadeToBlack.GetComponent<SpriteRenderer>();
         }
 
