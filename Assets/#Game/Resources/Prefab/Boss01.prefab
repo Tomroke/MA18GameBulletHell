@@ -193,6 +193,5 @@ MonoBehaviour:
   isEnemy: 1
   flashColour: {r: 1, g: 1, b: 1, a: 0.49019608}
   normalColour: {r: 1, g: 1, b: 1, a: 1}
-  numFlashes: 3
   iFrameSeconds: 2
-  flashSeconds: 0.08
+  flashSeconds: 0.1

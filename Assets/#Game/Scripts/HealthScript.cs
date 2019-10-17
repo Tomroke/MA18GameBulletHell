@@ -20,13 +20,12 @@ public class HealthScript : MonoBehaviour
     Color normalColour;
 
     [SerializeField]
-    int numFlashes = 3; 
+    private float iFrameSeconds = 1.0f;
 
     [SerializeField]
-    private float iFrameSeconds = 2.0f;
+    private float flashSeconds = 0.05f;
 
-    [SerializeField]
-    private float flashSeconds = 0.08f;
+    float numFlashes;
 
     private bool iFrame = false;
 
@@ -159,12 +158,13 @@ public class HealthScript : MonoBehaviour
         int temp = 0;
         if (spriteRenderer != null)
         {
+            numFlashes = (iFrameSeconds / flashSeconds) / 2;
             while (temp < numFlashes)
             {
                 spriteRenderer.color = flashColour;
-                yield return new WaitForSeconds(iFrameSeconds);
+                yield return new WaitForSeconds(flashSeconds);
                 spriteRenderer.color = normalColour;
-                yield return new WaitForSeconds(iFrameSeconds);
+                yield return new WaitForSeconds(flashSeconds);
                 temp++;
             }
         }

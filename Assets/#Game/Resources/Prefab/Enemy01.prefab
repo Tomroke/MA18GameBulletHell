@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3979193104543706010}
   m_LocalRotation: {x: -0, y: 0, z: -0.31880218, w: -0.9478213}
-  m_LocalPosition: {x: 2.4107993, y: 5.9796076, z: 0}
+  m_LocalPosition: {x: -8.162992, y: 5.1855383, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -203,6 +203,5 @@ MonoBehaviour:
   isEnemy: 1
   flashColour: {r: 1, g: 1, b: 1, a: 0.49019608}
   normalColour: {r: 1, g: 1, b: 1, a: 1}
-  numFlashes: 3
-  iFrameSeconds: 3
-  flashSeconds: 0.08
+  iFrameSeconds: 1
+  flashSeconds: 0.05
