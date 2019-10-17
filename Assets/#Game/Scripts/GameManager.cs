@@ -12,15 +12,17 @@ public class GameManager : MonoBehaviour
 
     private SpriteRenderer spriteRendererController;
 
-    public GameObject levelOver;
+    public GameObject player;
+
+    private GameObject levelOver;
 
     private GameObject mainMenu;
 
     private TMPro.TextMeshPro[] levelOverText;
 
-    private GameObject scoreGameObject;
+    private GameObject[] scoreGameObject;
 
-    private TMPro.TextMeshPro scoreText;
+    private TMPro.TextMeshPro[] scoreText;
 
     private BoxCollider2D restartButton;
 
@@ -28,13 +30,10 @@ public class GameManager : MonoBehaviour
 
     private int score = 0;
 
-    private int frames;
-
     private Scene currentScene;
 
     private string sceneName;
 
-    private GameObject player;
     private HealthScript playerHealth;
 
     private static GameManager _instance;
@@ -68,11 +67,33 @@ public class GameManager : MonoBehaviour
         }
 
         //Other code
+        if (player != null)
+        {
+            playerHealth = player.GetComponent<HealthScript>();
+            player.SetActive(false);
+
+        }
+
         levelOver = GameObject.FindGameObjectWithTag("LevelOverScreen");
+        scoreGameObject = GameObject.FindGameObjectsWithTag("Score");
+        scoreText = new TMPro.TextMeshPro[scoreGameObject.Length];
         if (levelOver != null)
         {
+            if (scoreGameObject != null)
+            {
+                for (int index = 0; index < scoreGameObject.Length; index++)
+                {
+                    if (scoreText != null)
+                    {
+                        scoreText[index] = scoreGameObject[index].GetComponent<TMPro.TextMeshPro>();
+                        scoreText[index].gameObject.SetActive(false);
+                    }
+                }
+            
+
             restartButton = levelOver.GetComponentInChildren<BoxCollider2D>();
             levelOver.SetActive(false);
+            }
         }
 
         mainMenu = GameObject.FindGameObjectWithTag("UI");
@@ -87,22 +108,14 @@ public class GameManager : MonoBehaviour
             spriteRendererController = fadeToBlack.GetComponent<SpriteRenderer>();
         }
 
-        player = Resources.Load<GameObject>("Prefab/Player"); ;
-        if(player != null)
+        if (scoreText != null)
         {
-            Instantiate(player);
-            playerHealth = player.GetComponent<HealthScript>();
-            player.SetActive(false);
-        }
-
-        scoreGameObject = GameObject.FindGameObjectWithTag("Score");
-        if (scoreGameObject != null)
-        {
-            scoreText = scoreGameObject.GetComponent<TMPro.TextMeshPro>();
-
-            if (scoreText.text.Equals("SCORE"))
+            for (int index = 0; index < scoreText.Length; index++)
             {
-                scoreText.SetText(score.ToString());
+                if (scoreText[index].text.Equals("SCORE"))
+                {
+                    scoreText[index].SetText(score.ToString());
+                }
             }
         }
 
@@ -111,11 +124,11 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SceneManager.activeSceneChanged += EndSceneChange;
+        SceneManager.activeSceneChanged += GameScene;
     }
 
     private void Update()
     {
-
         foreach (Touch touch in Input.touches)
         {
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
@@ -134,7 +147,7 @@ public class GameManager : MonoBehaviour
 
                         if (hit.collider == menuButtons[0])
                         {
-                            StartSceneChange("Level1");
+                            StartSceneChange("Level 1");
                         }
 
                         if (hit.collider == menuButtons[1])
@@ -155,6 +168,9 @@ public class GameManager : MonoBehaviour
 
     public void StartSceneChange(string scene)
     {
+        levelOver.SetActive(false);
+        player.SetActive(false);
+        scoreText[0].gameObject.SetActive(false);
         sceneName = scene;
         SceneManager.LoadScene("LoadScreen");
     }
@@ -164,7 +180,6 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "LoadScreen")
         {
             StartCoroutine(AsyncLoadScene(sceneName));
-            player.SetActive(true);
         }
     }
 
@@ -177,20 +192,32 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(3.0f);
         async.allowSceneActivation = true;
+        player.SetActive(true);
+        scoreText[0].gameObject.SetActive(true);
     }
+
+    private void GameScene(Scene sce1, Scene sce2)
+    {
+        if (!SceneManager.GetActiveScene().name.Equals("MainMenu") && !SceneManager.GetActiveScene().name.Equals("LoadScreen"))
+            player.GetComponent<Player>().InitializePlayerObjects();
+    }
+
 
     public void LevelOver()
     {
         levelOver.SetActive(true);
         levelOverText = levelOver.GetComponentsInChildren<TMPro.TextMeshPro>();
-        levelOverText[0].SetText(SceneManager.GetActiveScene().name);
-        levelOverText[1].SetText(score.ToString());
+        levelOverText[1].SetText(SceneManager.GetActiveScene().name);
+        levelOverText[0].SetText(score.ToString());
         StopAllCoroutines();
     }
 
     public void IncreaseScore()
     {
         score++;
-        scoreText.SetText(score.ToString());
+        for (int index = 0; index < scoreGameObject.Length; index++)
+        {
+            scoreText[index].text = score.ToString();
+        }
     }
 }

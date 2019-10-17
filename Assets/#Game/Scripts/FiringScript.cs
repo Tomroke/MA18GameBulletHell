@@ -36,7 +36,7 @@ public class FiringScript: MonoBehaviour
 
     private Vector3 shootersCurrentPosition;
 
-    List<GameObject> ammoBelt = new List<GameObject>();
+    private List<GameObject> ammoBelt = new List<GameObject>();
 
     private void Awake()
     {

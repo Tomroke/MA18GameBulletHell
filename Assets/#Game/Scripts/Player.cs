@@ -87,19 +87,6 @@ public class Player : MonoBehaviour
     {
 
         fireButton = GameObject.Find("FireButton");
-
-        health = GetComponent<HealthScript>();
-        if (health != null)
-        {
-            health.InstansiatePlayerHealthBar();
-        }
-
-        fireing = GetComponent<FiringScript>();
-        if (fireing != null)
-        {
-            fireing.InitiatePlayerAmmo();
-            SetFiringRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, spriteScale);
-        }
             
     }
 
@@ -208,6 +195,20 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void InitializePlayerObjects()
+    {
+        health = GetComponent<HealthScript>();
+        if (health != null)
+        {
+            health.InstansiatePlayerHealthBar();
+        }
 
+        fireing = GetComponent<FiringScript>();
+        if (fireing != null)
+        {
+            SetFiringRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, spriteScale);
+            fireing.InitiatePlayerAmmo();
+        }
+    }
 
 }
