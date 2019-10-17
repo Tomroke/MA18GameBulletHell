@@ -52,35 +52,35 @@ public class Player : MonoBehaviour
     private FiringScript fireing;
     private HealthScript health;
 
-    private static Player _instance;
+    //private static Player _instance;
 
 
-    public static Player Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = Instantiate(Resources.Load<GameObject>("Prefab/Player")).GetComponent<Player>();
-            }
+    //public static Player Instance
+    //{
+    //    get
+    //    {
+    //        if (_instance == null)
+    //        {
+    //            _instance = Instantiate(Resources.Load<GameObject>("Prefab/Player")).GetComponent<Player>();
+    //        }
 
-            return _instance;
-        }
-    }
+    //        return _instance;
+    //    }
+    //}
 
 
-    void Awake()
-    {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-    }
+    //void Awake()
+    //{
+    //    if (_instance != null && _instance != this)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //    else
+    //    {
+    //        _instance = this;
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //}
 
 
     private void Start()
@@ -91,20 +91,16 @@ public class Player : MonoBehaviour
         health = GetComponent<HealthScript>();
         if (health != null)
         {
-            HealthBar();
+            health.InstansiatePlayerHealthBar();
         }
 
         fireing = GetComponent<FiringScript>();
         if (fireing != null)
         {
+            fireing.InitiatePlayerAmmo();
             SetFiringRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, spriteScale);
         }
             
-    }
-
-    public void HealthBar()
-    {
-        health.InstansiatePlayerHealthBar();
     }
 
     public void SetFiringRules(float rateOfFire,    

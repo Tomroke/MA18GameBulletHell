@@ -80,6 +80,25 @@ public class FiringScript: MonoBehaviour
         }
     }
 
+    public void InitiatePlayerAmmo()
+    {
+        for (int i = 0; i < ammoAmount; i++)
+        {
+            bulletObject.GetComponent<SpriteRenderer>().sprite = bulletSprite;
+            bulletObject.GetComponent<Transform>().localScale = new Vector3(spriteScale, spriteScale, 0);
+            GameObject _Bullet = Instantiate(bulletObject, gameObject.transform.position, Quaternion.identity);
+            //_Bullet.transform.SetParent(ammoGameObject.transform, false);
+            if (_Bullet != null)
+            {
+                _Bullet.GetComponent<Rigidbody2D>().GetComponent<ShotScript>().IsEnemyShot = enemyShots;
+                _Bullet.GetComponent<ShotScript>().SetDamage = bulletDamage;
+                _Bullet.GetComponent<ShotScript>().SetSpeed = bulletSpeed;
+                _Bullet.SetActive(false);
+                ammoBelt.Add(_Bullet);
+            }
+        }
+    }
+
 
     public void Attack()
     {

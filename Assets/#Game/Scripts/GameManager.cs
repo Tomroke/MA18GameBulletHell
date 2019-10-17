@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     private SpriteRenderer spriteRendererController;
 
-    private GameObject levelOver;
+    public GameObject levelOver;
 
     private GameObject mainMenu;
 
@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
 
     private string sceneName;
 
+    private GameObject player;
+    private HealthScript playerHealth;
+
     private static GameManager _instance;
 
 
@@ -53,6 +56,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        //Singelton Code
         if (_instance != null && _instance != this)
         {
             Destroy(gameObject);
@@ -63,6 +67,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
+        //Other code
         levelOver = GameObject.FindGameObjectWithTag("LevelOverScreen");
         if (levelOver != null)
         {
@@ -82,16 +87,30 @@ public class GameManager : MonoBehaviour
             spriteRendererController = fadeToBlack.GetComponent<SpriteRenderer>();
         }
 
+        player = Resources.Load<GameObject>("Prefab/Player"); ;
+        if(player != null)
+        {
+            Instantiate(player);
+            playerHealth = player.GetComponent<HealthScript>();
+            player.SetActive(false);
+        }
+
         scoreGameObject = GameObject.FindGameObjectWithTag("Score");
-        scoreText = scoreGameObject.GetComponent<TMPro.TextMeshPro>();
+        if (scoreGameObject != null)
+        {
+            scoreText = scoreGameObject.GetComponent<TMPro.TextMeshPro>();
+
+            if (scoreText.text.Equals("SCORE"))
+            {
+                scoreText.SetText(score.ToString());
+            }
+        }
 
     }
 
     void Start()
     {
-        SceneManager.activeSceneChanged += HidePlayer;
-        SceneManager.activeSceneChanged += HideFadeObject;
-        SceneManager.activeSceneChanged += ChangeSceneWithEvent;
+        SceneManager.activeSceneChanged += EndSceneChange;
     }
 
     private void Update()
@@ -110,14 +129,12 @@ public class GameManager : MonoBehaviour
                     {
                         if (hit.collider == restartButton)
                         {
-                            sceneName = "MainMenu";
-                            ChangeScene();
+                            StartSceneChange("MainMenu");
                         }
 
                         if (hit.collider == menuButtons[0])
                         {
-                            sceneName = "Level1";
-                            ChangeScene();
+                            StartSceneChange("Level1");
                         }
 
                         if (hit.collider == menuButtons[1])
@@ -135,75 +152,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void HidePlayer(Scene arg0, Scene arg1)
+
+    public void StartSceneChange(string scene)
     {
+        sceneName = scene;
+        SceneManager.LoadScene("LoadScreen");
+    }
+
+    private void EndSceneChange(Scene sce1, Scene sce2)
+    {
+        if (SceneManager.GetActiveScene().name == "LoadScreen")
         {
-            currentScene = SceneManager.GetActiveScene();
-
-            if (Player.Instance.gameObject.activeInHierarchy && currentScene.name.Equals("MainMenu") || currentScene.name.Equals("LoadScreen"))
-            {
-                Player.Instance.gameObject.SetActive(false);
-                Player.Instance.gameObject.GetComponent<HealthScript>().HidePlayerHealth();
-            }
-
-            else if (!Player.Instance.gameObject.activeInHierarchy && !currentScene.name.Equals("MainMenu") && !currentScene.name.Equals("LoadScreen"))
-            {
-                Player.Instance.gameObject.SetActive(true);
-                Player.Instance.gameObject.GetComponent<HealthScript>().ResetPlayerHealth();
-                Player.Instance.transform.position = Vector3.zero;
-
-                if (scoreText.text.Equals("SCORE"))
-                {
-                    scoreText.SetText("0");
-                }
-            }
+            StartCoroutine(AsyncLoadScene(sceneName));
+            player.SetActive(true);
         }
     }
 
-    private void HideFadeObject(Scene arg0, Scene arg1)
+    IEnumerator AsyncLoadScene(string scene)
     {
-        fadeToBlack.SetActive(false);
-    }
 
-    public void ChangeSceneWithEvent(Scene arg0, Scene arg1)
-    {
-        ChangeScene();
-    }
+        yield return null;
+        AsyncOperation async = SceneManager.LoadSceneAsync(scene);
+        async.allowSceneActivation = false;
 
-    public void ChangeScene()
-    {
-        if (sceneName != null && !SceneManager.GetActiveScene().name.Equals("level1"))
-        {
-            if (SceneManager.GetActiveScene().name == "LoadScreen")
-            {
-                Color color = spriteRendererController.color;
-                color.a = 0;
-                spriteRendererController.color = color;
-                fadeToBlack.SetActive(true);
-                LeanTween.alpha(fadeToBlack, 1.0f, fadeSpeed).setEaseInBack()
-                    .setOnComplete(() => { SceneManager.LoadScene(sceneName, LoadSceneMode.Single); });
-                //SceneManager.LoadScene("LoadScreen", LoadSceneMode.Single);
-                //SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
-            }
-            else
-            {
-                FadetoBlack();
-            }
-            
-        }
-        else
-            {
-                Debug.Log(sceneName);
-            }
-    }
-
-    public void FadetoBlack()
-    {
-        Color color = spriteRendererController.color;
-        color.a = 0;
-        spriteRendererController.color = color;
-        fadeToBlack.SetActive(true);
-        LeanTween.alpha(fadeToBlack, 1.0f, fadeSpeed).setEaseInBack().setOnComplete(() => { SceneManager.LoadScene("LoadScreen", LoadSceneMode.Single); });
+        yield return new WaitForSeconds(3.0f);
+        async.allowSceneActivation = true;
     }
 
     public void LevelOver()
@@ -214,7 +187,6 @@ public class GameManager : MonoBehaviour
         levelOverText[1].SetText(score.ToString());
         StopAllCoroutines();
     }
-
 
     public void IncreaseScore()
     {

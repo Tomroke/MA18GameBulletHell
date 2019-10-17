@@ -162,9 +162,9 @@ public class HealthScript : MonoBehaviour
             while (temp < numFlashes)
             {
                 spriteRenderer.color = flashColour;
-                yield return new WaitForSeconds(flashSeconds);
+                yield return new WaitForSeconds(iFrameSeconds);
                 spriteRenderer.color = normalColour;
-                yield return new WaitForSeconds(flashSeconds);
+                yield return new WaitForSeconds(iFrameSeconds);
                 temp++;
             }
         }
