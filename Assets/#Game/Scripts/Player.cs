@@ -86,8 +86,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
 
-        fireButton = GameObject.Find("FireButton");
-            
+        fireing = GetComponent<FiringScript>();
     }
 
     public void SetFiringRules(float rateOfFire,    
@@ -113,10 +112,10 @@ public class Player : MonoBehaviour
 
         foreach (Touch touch in Input.touches)
         {
+            //Debug.Log("In foreach");
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
             touchPosition.z = 0;
 
-            fireing = GetComponent<FiringScript>();
             RaycastHit2D hit = Physics2D.Raycast(touchPosition, Vector2.zero);
 
             switch (touch.phase)
@@ -131,8 +130,10 @@ public class Player : MonoBehaviour
                 case TouchPhase.Stationary:
                     if (hit.collider != null && hit.collider.gameObject == fireButton)
                     {
+                        //Debug.Log("Touch Stationary");
                         if (fireing != null)
                         {
+                            //Debug.Log("In If sats");
                             fireing.Attack();
                         }
                     }
@@ -197,6 +198,9 @@ public class Player : MonoBehaviour
 
     public void InitializePlayerObjects()
     {
+
+        fireButton = GameObject.Find("FireButton");
+
         health = GetComponent<HealthScript>();
         if (health != null)
         {
