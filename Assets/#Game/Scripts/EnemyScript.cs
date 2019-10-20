@@ -45,7 +45,7 @@ public class EnemyScript : MonoBehaviour
     private Sprite bulletSprite;
 
     [SerializeField]
-    private float spriteScale;
+    private float bulletSpriteScale;
 
     void Awake()
     {
@@ -61,7 +61,7 @@ public class EnemyScript : MonoBehaviour
             bulletSprite, 
             bulletSpeed, 
             bulletDamage, 
-            spriteScale);
+            bulletSpriteScale);
     }
 
     void Update()

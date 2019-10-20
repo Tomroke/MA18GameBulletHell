@@ -11,7 +11,6 @@ public class MoveScript : MonoBehaviour
 
     private LTSpline visualizePath;
 
-    private bool reverseOrder = false;
 
     [Header("Private Variables")]
     [SerializeField]
@@ -26,6 +25,10 @@ public class MoveScript : MonoBehaviour
     private int spriteRotationSpeed = 5;
 
     [Header("LeenTween Variables")]
+
+    [SerializeField]
+    private bool reversableMovement = false;
+
     [SerializeField]
     private LeanTweenType loopType;
 
@@ -37,12 +40,12 @@ public class MoveScript : MonoBehaviour
 
     private void Start()
     {
+        bossPathTwo = Resources.Load<GameObject>("Prefab/BossPath02");
         if (pathParent != null)
         {
-            pathParent.transform.position = gameObject.transform.position;
+
             if (gameObject.tag.Equals("Boss"))
             {
-                bossPathTwo = Resources.Load<GameObject>("Prefab/BossPath02");
                 InitiateBossMovement();
             }
             else
@@ -51,24 +54,17 @@ public class MoveScript : MonoBehaviour
             }
         }
 
-        LeanTween.rotateAround(gameObject, Vector3.forward, 360, 6.0f).setLoopCount(10);
+        LeanTween.rotateAround(gameObject, Vector3.forward, 360, 6.0f).setLoopCount(20);
     }
 
 
     public void InitiateMovement()
     {
+        pathParent.transform.position = gameObject.transform.position;
         pathTransformers = pathParent.GetComponentsInChildren<Transform>();
         path = new Vector3[pathTransformers.Length - 1];
 
-        if (pathTransformers != null && reverseOrder)
-        {
-            for (int i = pathTransformers.Length - 1; i > 1; i--)
-            {
-                path[path.Length - i] = pathTransformers[i].position;
-            }
-        }
-
-        else if (pathTransformers != null)
+        if (pathTransformers != null)
         {
             for (int i = 1; i < pathTransformers.Length; i++)
             {
@@ -123,6 +119,21 @@ public class MoveScript : MonoBehaviour
         }
     }
 
+    public void ReverseEnemyPath()
+    {
+        if (reversableMovement)
+        {
+            pathParent.GetComponent<Transform>().localScale = new Vector3(-1, 1, 1);
+        }
+    }
+
+    public void NormalEnemyPath()
+    {
+        if (reversableMovement)
+        {
+            pathParent.GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
+        }
+    }
 
     public void SetParentPosition (Vector3 input)
     {

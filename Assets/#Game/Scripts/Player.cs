@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Sprite bulletSprite;
     [SerializeField]
-    private float spriteScale;
+    private float bulletSpriteScale;
 
     private Vector2 movement;
     private GameObject fireButton;
@@ -98,9 +98,9 @@ public class Player : MonoBehaviour
                                Sprite bulletSprite,
                                float bulletSpeed,
                                int bulletDamage,
-                               float spriteScale)
+                               float bulletSpriteScale)
     {
-        fireing.SetFireRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, spriteScale);
+        fireing.SetFireRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, bulletSpriteScale);
     }
 
 
@@ -176,7 +176,7 @@ public class Player : MonoBehaviour
             bulletSpeed = powerUp.getSpeed();
             bulletDamage = powerUp.getDamage();
 
-            SetFiringRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, spriteScale);
+            SetFiringRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, bulletSpriteScale);
 
             Destroy(powerUp.gameObject);
         }
@@ -190,7 +190,7 @@ public class Player : MonoBehaviour
             bulletSpeed += powerUp.getSpeed();
             bulletDamage += powerUp.getDamage();
 
-            SetFiringRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, spriteScale);
+            SetFiringRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, bulletSpriteScale);
 
             Destroy(powerUp.gameObject);
         }
@@ -210,7 +210,7 @@ public class Player : MonoBehaviour
         fireing = GetComponent<FiringScript>();
         if (fireing != null)
         {
-            SetFiringRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, spriteScale);
+            SetFiringRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, bulletSpriteScale);
             fireing.InitiatePlayerAmmo();
         }
     }

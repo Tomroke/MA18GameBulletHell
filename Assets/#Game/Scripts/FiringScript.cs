@@ -26,7 +26,7 @@ public class FiringScript: MonoBehaviour
 
     private Sprite bulletSprite;
 
-    private float spriteScale;
+    private float bulletSpriteScale;
 
     private GameObject bulletObject;
 
@@ -66,7 +66,7 @@ public class FiringScript: MonoBehaviour
         for (int i = 0; i < ammoAmount; i++)
         {
             bulletObject.GetComponent<SpriteRenderer>().sprite = bulletSprite;
-            bulletObject.GetComponent<Transform>().localScale = new Vector3(spriteScale, spriteScale, 0);
+            bulletObject.GetComponent<Transform>().localScale = new Vector3(bulletSpriteScale, bulletSpriteScale, 0);
             GameObject _Bullet = Instantiate(bulletObject, gameObject.transform.position, Quaternion.identity);
             _Bullet.transform.SetParent(ammoGameObject.transform, false);
             if (_Bullet != null)
@@ -85,7 +85,7 @@ public class FiringScript: MonoBehaviour
         for (int i = 0; i < ammoAmount; i++)
         {
             bulletObject.GetComponent<SpriteRenderer>().sprite = bulletSprite;
-            bulletObject.GetComponent<Transform>().localScale = new Vector3(spriteScale, spriteScale, 0);
+            bulletObject.GetComponent<Transform>().localScale = new Vector3(bulletSpriteScale, bulletSpriteScale, 0);
             GameObject _Bullet = Instantiate(bulletObject, gameObject.transform.position, Quaternion.identity);
             //_Bullet.transform.SetParent(ammoGameObject.transform, false);
             if (_Bullet != null)
@@ -183,7 +183,7 @@ public class FiringScript: MonoBehaviour
                              Sprite bulletSprite,
                              float bulletSpeed,
                              int bulletDamage,
-                             float spriteScale)
+                             float bulletSpriteScale)
     {
 
         this.rateOfFire = rateOfFire;
@@ -202,7 +202,7 @@ public class FiringScript: MonoBehaviour
 
         this.bulletSprite = bulletSprite;
 
-        this.spriteScale = spriteScale;
+        this.bulletSpriteScale = bulletSpriteScale;
 
         this.bulletDamage = bulletDamage;
 
@@ -221,7 +221,7 @@ public class FiringScript: MonoBehaviour
                              Sprite bulletSprite,
                              float bulletSpeed,
                              int bulletDamage,
-                             float spriteScale)
+                             float bulletSpriteScale)
     {
         this.rateOfFire = rateOfFire;
 
@@ -246,7 +246,7 @@ public class FiringScript: MonoBehaviour
         ChangeSprite();
         }
 
-        this.spriteScale = spriteScale;
+        this.bulletSpriteScale = bulletSpriteScale;
 
 
     }

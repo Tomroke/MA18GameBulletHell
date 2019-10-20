@@ -146,7 +146,7 @@ MonoBehaviour:
   endAngle: 220
   bulletSprite: {fileID: 8218418429780711021, guid: d94695bc85ee6ae42a24a544e0fd1c47,
     type: 3}
-  spriteScale: 0.8
+  bulletSpriteScale: 1
 --- !u!114 &962471818470129082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +175,7 @@ MonoBehaviour:
     type: 3}
   speed: 1.8
   spriteRotationSpeed: 5
+  reversableMovement: 0
   loopType: 0
   easeType: 0
 --- !u!114 &-557113436731891914

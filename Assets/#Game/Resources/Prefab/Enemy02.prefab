@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4293579426365482504}
   m_LocalRotation: {x: 0, y: -0, z: 0.90879613, w: -0.41724062}
-  m_LocalPosition: {x: 2.4604568, y: -0.6044055, z: 0}
+  m_LocalPosition: {x: -2.4, y: 5.49, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rateOfFire: 1.6
   bulletsPerShot: 2
-  coolDownPerSec: 0.25
+  coolDownPerSec: 0.29
   ammoAmount: 10
   bulletDamage: 1
   bulletSpeed: 6
@@ -156,7 +156,7 @@ MonoBehaviour:
   endAngle: 200
   bulletSprite: {fileID: 5663203546466250240, guid: d94695bc85ee6ae42a24a544e0fd1c47,
     type: 3}
-  spriteScale: 3
+  bulletSpriteScale: 3
 --- !u!114 &3023451136477548959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,8 +183,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathParent: {fileID: 374256078932435742, guid: 5784222a181e9b642b055db3300794a0,
     type: 3}
-  speed: 1.5
+  speed: 1.2
   spriteRotationSpeed: 5
+  reversableMovement: 0
   loopType: 1
   easeType: 0
 --- !u!114 &178642814417088822

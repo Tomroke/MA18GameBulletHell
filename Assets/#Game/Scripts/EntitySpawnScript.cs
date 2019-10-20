@@ -35,6 +35,8 @@ public class EntitySpawnScript : MonoBehaviour
     {
         enemyPrefabBoss = Resources.Load<GameObject>("Prefab/Boss01");
 
+
+
         StartCoroutine(SpawnEnemies());
     }
 
@@ -44,9 +46,9 @@ public class EntitySpawnScript : MonoBehaviour
         StartCoroutine(bossCountdown());
         while (bossNotActive)
         {
-            StartCoroutine(instantiatePowerup());
             yield return new WaitForSeconds(enemySpawnDelay);
             instantiateGameObject(GenerateRandomEnemy(), RandomIndex());
+            StartCoroutine(instantiatePowerup());
         }
     }
 
@@ -78,13 +80,19 @@ public class EntitySpawnScript : MonoBehaviour
 
     private void instantiateGameObject(GameObject gameObject, int listIndex)
     {
-        gameObject.GetComponent<MoveScript>().SetParentPosition(spawnPoints[listIndex].transform.position);
+        MoveScript tmpMove = gameObject.GetComponent<MoveScript>();
+        tmpMove.SetParentPosition(spawnPoints[listIndex].transform.position);
+        if(listIndex < 7)
+        {
+            tmpMove.ReverseEnemyPath();
+        }
+        else
+        {
+            tmpMove.NormalEnemyPath();
+        }
         gameObject.transform.position = spawnPoints[listIndex].transform.position;
-        gameObject.GetComponent<MoveScript>().InitiateMovement();
         gameObject.SetActive(true);
         Instantiate(gameObject);
-        gameObject.SetActive(true);
-            
     }
 
     private int RandomIndex()
