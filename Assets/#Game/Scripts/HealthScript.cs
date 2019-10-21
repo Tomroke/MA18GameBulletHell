@@ -31,6 +31,8 @@ public class HealthScript : MonoBehaviour
 
     private int collisionDamage = 1;
 
+    private string stringTag;
+
     private SpriteRenderer playerSprite;
 
     private SpriteRenderer enemySprite;
@@ -38,56 +40,75 @@ public class HealthScript : MonoBehaviour
     private GameObject playerHealthIcon;
     private List<GameObject> playerHealthList = new List<GameObject>();
 
+
     private void Start()
     {
-        if (gameObject.tag.Equals("Player"))
+        stringTag = gameObject.tag;
+        if (stringTag.Equals("Player"))
         {
             playerSprite = gameObject.GetComponent<SpriteRenderer>();
         }
 
-        if (!gameObject.tag.Equals("Player"))
+        if (!stringTag.Equals("Player"))
         {
             enemySprite = gameObject.GetComponent<SpriteRenderer>();
         }
     }
 
+
     public void Damage(int damageAmount)
     {
         if (!iFrame)
         {
-            health -= damageAmount;
 
-            if (gameObject.tag.Equals("Player") && health >= 0)
+            if (stringTag.Equals("Player") && health > 0)
             {
-                GameObject temp = playerHealthList[health];
-                temp.SetActive(false);
+                for (int i = 0; i < damageAmount; i++)
+                {
+                    if ((health - (i + 1)) <= 0)
+                    {
+                        health = 0;
+                        playerHealthList[health].SetActive(false);
+                        break;
+                    }
+                    playerHealthList[health - (i+1)].SetActive(false);
+                }
                 StartCoroutine(IFrames(playerSprite));
             }
 
-            if (!gameObject.tag.Equals("Player") && health >= 0)
+            if (!stringTag.Equals("Player") && health >= 0)
             {
-                Debug.Log("in IFrame");
                 StartCoroutine(ColourFlash(enemySprite));
             }
+
+            health -= damageAmount;
         }
 
-        if (health <= 0)
+        if (health < 0)
         {
-            if (!gameObject.tag.Equals("Player"))
+            if (!stringTag.Equals("Player"))
             {
                 GameManager.Instance.IncreaseScore();
             }
 
-            if (gameObject.tag.Equals("Player"))
+            if (stringTag.Equals("Player"))
             {
                 GameManager.Instance.LevelOver();
             }
 
             //Change this so the bullets remains after the shooter is destroyed.
             gameObject.GetComponent<FiringScript>().DestroyAmmo();
-            Destroy(gameObject);
+            if (stringTag.Equals("Player"))
+            {
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -96,8 +117,8 @@ public class HealthScript : MonoBehaviour
         {
             if (shot.IsEnemyShot != isEnemy)
             {
-            Damage(shot.DamageAmount());
-            shot.gameObject.SetActive(false);
+                Damage(shot.DamageAmount());
+                shot.gameObject.SetActive(false);
             }
         }
 
@@ -112,9 +133,10 @@ public class HealthScript : MonoBehaviour
         }
     }
 
+
     public void InstansiatePlayerHealthBar()
     {
-        if (gameObject.tag.Equals("Player"))
+        if (stringTag.Equals("Player"))
         {
             for (int index = 0; index < health; index++)
             {
@@ -128,6 +150,7 @@ public class HealthScript : MonoBehaviour
         }
     }
 
+
     public void ResetPlayerHealth()
     {
         foreach (GameObject tmp in playerHealthList)
@@ -135,6 +158,7 @@ public class HealthScript : MonoBehaviour
             tmp.SetActive(true);
         }
     }
+
 
     public void HidePlayerHealth()
     {
@@ -153,6 +177,7 @@ public class HealthScript : MonoBehaviour
         iFrame = false;
     }
 
+
     IEnumerator ColourFlash(SpriteRenderer spriteRenderer)
     {
         int temp = 0;
@@ -170,15 +195,18 @@ public class HealthScript : MonoBehaviour
         }
     }
 
+
     private void OnBecameVisible()
     {
         iFrame = false;
     }
 
+
     private void OnBecameInvisible()
     {
         iFrame = true;
     }
+
 
     public bool IsEnemy()
     {

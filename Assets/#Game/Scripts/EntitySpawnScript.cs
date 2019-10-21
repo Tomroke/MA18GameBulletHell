@@ -35,8 +35,6 @@ public class EntitySpawnScript : MonoBehaviour
     {
         enemyPrefabBoss = Resources.Load<GameObject>("Prefab/Boss01");
 
-
-
         StartCoroutine(SpawnEnemies());
     }
 
@@ -52,6 +50,7 @@ public class EntitySpawnScript : MonoBehaviour
         }
     }
 
+
     IEnumerator bossCountdown()
     {
         yield return new WaitForSeconds(bossSpawnTimer);
@@ -59,11 +58,13 @@ public class EntitySpawnScript : MonoBehaviour
         instantiateGameObject(enemyPrefabBoss, 6);
     }
 
+
     IEnumerator instantiatePowerup()
     {
         yield return new WaitForSeconds(powerUpSpawnDelay);
         instantiateGameObject(GenerateRandomPowerup(), RandomIndex());
     }
+
 
     private GameObject GenerateRandomEnemy()
     {
@@ -71,12 +72,14 @@ public class EntitySpawnScript : MonoBehaviour
         return enemyPrefabs[tmp];
     }
 
+
     private GameObject GenerateRandomPowerup()
     {
         int tmp = UnityEngine.Random.Range(0, powerups.Count);
         return powerups[tmp];
         
     }
+
 
     private void instantiateGameObject(GameObject gameObject, int listIndex)
     {
@@ -94,6 +97,7 @@ public class EntitySpawnScript : MonoBehaviour
         gameObject.SetActive(true);
         Instantiate(gameObject);
     }
+
 
     private int RandomIndex()
     {

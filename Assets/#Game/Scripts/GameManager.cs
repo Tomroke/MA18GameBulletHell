@@ -121,11 +121,13 @@ public class GameManager : MonoBehaviour
 
     }
 
+
     void Start()
     {
         SceneManager.activeSceneChanged += EndSceneChange;
         SceneManager.activeSceneChanged += GameScene;
     }
+
 
     private void Update()
     {
@@ -135,6 +137,7 @@ public class GameManager : MonoBehaviour
             touchPosition.z = 0;
 
             RaycastHit2D hit = Physics2D.Raycast(touchPosition, Vector2.zero);
+            Debug.Log("touch " + hit.collider);
             switch (touch.phase)
             {
                 case TouchPhase.Began:
@@ -147,6 +150,7 @@ public class GameManager : MonoBehaviour
 
                         if (hit.collider == menuButtons[0])
                         {
+                            Debug.Log("Menu " + menuButtons[0]);
                             StartSceneChange("Level 1");
                         }
 
@@ -160,7 +164,7 @@ public class GameManager : MonoBehaviour
                             Application.Quit();
                         }
                     }
-                    break;
+                 break;
             }
         }
     }
@@ -175,6 +179,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("LoadScreen");
     }
 
+
     private void EndSceneChange(Scene sce1, Scene sce2)
     {
         if (SceneManager.GetActiveScene().name == "LoadScreen")
@@ -182,6 +187,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(AsyncLoadScene(sceneName));
         }
     }
+
 
     IEnumerator AsyncLoadScene(string scene)
     {
@@ -196,10 +202,18 @@ public class GameManager : MonoBehaviour
         scoreText[0].gameObject.SetActive(true);
     }
 
+
     private void GameScene(Scene sce1, Scene sce2)
     {
         if (!SceneManager.GetActiveScene().name.Equals("MainMenu") && !SceneManager.GetActiveScene().name.Equals("LoadScreen"))
+        {
             player.GetComponent<Player>().InitializePlayerObjects();
+        }
+        else
+        {
+            player.SetActive(false);
+        }
+            
     }
 
 
@@ -211,6 +225,7 @@ public class GameManager : MonoBehaviour
         levelOverText[0].SetText(score.ToString());
         StopAllCoroutines();
     }
+
 
     public void IncreaseScore()
     {

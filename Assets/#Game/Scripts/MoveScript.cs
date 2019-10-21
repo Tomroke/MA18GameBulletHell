@@ -86,6 +86,7 @@ public class MoveScript : MonoBehaviour
 
     private void InitiateBossMovement()
     {
+
         if (currentpath == 1)
         {
             currentpath++;
@@ -148,6 +149,7 @@ public class MoveScript : MonoBehaviour
         }
     }
 
+    //Draws the enemies path on screen when active.
     //void OnDrawGizmos()
     //{
     //    Gizmos.color = Color.red;

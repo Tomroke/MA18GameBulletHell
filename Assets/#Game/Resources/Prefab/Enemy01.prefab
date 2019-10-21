@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3979193104543706010}
   m_LocalRotation: {x: -0, y: 0, z: -0.31880218, w: -0.9478213}
-  m_LocalPosition: {x: -7.4, y: 5.49, z: 0}
+  m_LocalPosition: {x: 4.6, y: 5.49, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathParent: {fileID: 969002508488950428, guid: 88bb84d61511b4949ae763921ed1a50b,
     type: 3}
-  speed: 1
+  speed: 0.5
   spriteRotationSpeed: 5
   reversableMovement: 0
   loopType: 1

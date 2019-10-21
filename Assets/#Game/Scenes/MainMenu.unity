@@ -1874,15 +1874,25 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1986606944}
+    - target: {fileID: 1190407671, guid: 0dfb03b4e33bd004d84e0ca6faeab24f, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1852346063831738118, guid: 0dfb03b4e33bd004d84e0ca6faeab24f,
+        type: 3}
+      propertyPath: bulletSpriteScale
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1852346063831738118, guid: 0dfb03b4e33bd004d84e0ca6faeab24f,
+        type: 3}
+      propertyPath: ammoAmount
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 662295165, guid: 0dfb03b4e33bd004d84e0ca6faeab24f, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 824147193, guid: 0dfb03b4e33bd004d84e0ca6faeab24f, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1190407671, guid: 0dfb03b4e33bd004d84e0ca6faeab24f, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}

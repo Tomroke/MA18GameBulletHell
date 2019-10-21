@@ -44,50 +44,60 @@ public class PowerupScript : MonoBehaviour
     [SerializeField]
     private Sprite bulletSprite;
 
+
     public string getPowerupType()
     {
         return PowerupType;
     }
+
 
     public float getRateofFire()
     {
         return rateOfFire;
     }
 
+
     public int getBulletAmount()
     {
         return bulletsPerShot;
     }
+
 
     public float getCoolDownPerSec()
     {
         return coolDownPerSec;
     }
 
+
     public int getAmmoAmount()
     {
         return ammoAmount;
     }
+
 
     public float getStartAngle()
     {
         return startAngle;
     }
 
+
     public float getEndAngle()
     {
         return endAngle;
     }
+
 
     public float getSpeed()
     {
         return speed;
     }
 
+
     public int getDamage()
     {
         return damage;
     }
+
 
     public Sprite getSprite()
     {

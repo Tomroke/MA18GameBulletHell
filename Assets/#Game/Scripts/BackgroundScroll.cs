@@ -17,13 +17,11 @@ public class BackgroundScroll : MonoBehaviour
         material = GetComponent<Renderer>().material;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         wallOffset = new Vector2(xVelocity, yVelocity);
     }
 
-    // Update is called once per frame
     void Update()
     {
         material.mainTextureOffset += wallOffset * Time.deltaTime;
