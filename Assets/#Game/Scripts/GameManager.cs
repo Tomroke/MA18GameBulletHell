@@ -69,9 +69,7 @@ public class GameManager : MonoBehaviour
         //Other code
         if (player != null)
         {
-            playerHealth = player.GetComponent<HealthScript>();
             player.SetActive(false);
-
         }
 
         levelOver = GameObject.FindGameObjectWithTag("LevelOverScreen");
@@ -96,11 +94,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        mainMenu = GameObject.FindGameObjectWithTag("UI");
-        if(mainMenu != null)
-        {
-            menuButtons = mainMenu.GetComponentsInChildren<BoxCollider2D>();
-        }
+        GetMainMenuButtons();
 
         if (fadeToBlack != null)
         {
@@ -124,8 +118,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        SceneManager.activeSceneChanged += EndSceneChange;
         SceneManager.activeSceneChanged += GameScene;
+        SceneManager.activeSceneChanged += EndSceneChange;
+        SceneManager.activeSceneChanged += MainMenuScene;
     }
 
 
@@ -137,7 +132,7 @@ public class GameManager : MonoBehaviour
             touchPosition.z = 0;
 
             RaycastHit2D hit = Physics2D.Raycast(touchPosition, Vector2.zero);
-            Debug.Log("touch " + hit.collider);
+            //Debug.Log("touch " + hit.collider);
             switch (touch.phase)
             {
                 case TouchPhase.Began:
@@ -150,7 +145,6 @@ public class GameManager : MonoBehaviour
 
                         if (hit.collider == menuButtons[0])
                         {
-                            Debug.Log("Menu " + menuButtons[0]);
                             StartSceneChange("Level 1");
                         }
 
@@ -174,7 +168,7 @@ public class GameManager : MonoBehaviour
     {
         levelOver.SetActive(false);
         player.SetActive(false);
-        scoreText[0].gameObject.SetActive(false);
+        scoreText[1].gameObject.SetActive(false);
         sceneName = scene;
         SceneManager.LoadScene("LoadScreen");
     }
@@ -185,6 +179,15 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "LoadScreen")
         {
             StartCoroutine(AsyncLoadScene(sceneName));
+        }
+    }
+
+    private void GetMainMenuButtons()
+    {
+        mainMenu = GameObject.FindGameObjectWithTag("UI");
+        if (mainMenu != null)
+        {
+            menuButtons = mainMenu.GetComponentsInChildren<BoxCollider2D>();
         }
     }
 
@@ -199,7 +202,15 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         async.allowSceneActivation = true;
         player.SetActive(true);
-        scoreText[0].gameObject.SetActive(true);
+    }
+
+    private void MainMenuScene(Scene sce1, Scene sce2)
+    {
+        if (SceneManager.GetActiveScene().name.Equals("MainMenu"))
+        {
+            GetMainMenuButtons();
+        }
+
     }
 
 
@@ -207,11 +218,14 @@ public class GameManager : MonoBehaviour
     {
         if (!SceneManager.GetActiveScene().name.Equals("MainMenu") && !SceneManager.GetActiveScene().name.Equals("LoadScreen"))
         {
-            player.GetComponent<Player>().InitializePlayerObjects();
+            Instantiate(player);
+            player.SetActive(true);
+            scoreText[1].gameObject.SetActive(true);
         }
         else
         {
             player.SetActive(false);
+            scoreText[1].gameObject.SetActive(false);
         }
             
     }
@@ -221,8 +235,9 @@ public class GameManager : MonoBehaviour
     {
         levelOver.SetActive(true);
         levelOverText = levelOver.GetComponentsInChildren<TMPro.TextMeshPro>();
-        levelOverText[1].SetText(SceneManager.GetActiveScene().name);
-        levelOverText[0].SetText(score.ToString());
+        levelOverText[0].SetText(SceneManager.GetActiveScene().name);
+        scoreText[0].gameObject.SetActive(true);
+        scoreText[0].SetText(score.ToString());
         StopAllCoroutines();
     }
 

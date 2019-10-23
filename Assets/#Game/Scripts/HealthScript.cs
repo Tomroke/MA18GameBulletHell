@@ -40,10 +40,13 @@ public class HealthScript : MonoBehaviour
     private GameObject playerHealthIcon;
     private List<GameObject> playerHealthList = new List<GameObject>();
 
+    private void Awake()
+    {
+        stringTag = gameObject.tag;
+    }
 
     private void Start()
     {
-        stringTag = gameObject.tag;
         if (stringTag.Equals("Player"))
         {
             playerSprite = gameObject.GetComponent<SpriteRenderer>();

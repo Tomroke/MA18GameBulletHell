@@ -55,8 +55,14 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-
+        fireButton = GameObject.Find("FireButton");
         fireing = GetComponent<FiringScript>();
+        SetFiringRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, bulletSpriteScale);
+        health = gameObject.GetComponent<HealthScript>();
+        if(health != null)
+        {
+            health.InstansiatePlayerHealthBar();
+        }
     }
 
 
@@ -83,7 +89,6 @@ public class Player : MonoBehaviour
 
         foreach (Touch touch in Input.touches)
         {
-            //Debug.Log("In foreach");
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
             touchPosition.z = 0;
 
@@ -154,7 +159,6 @@ public class Player : MonoBehaviour
 
         else if (powerUp != null && powerUp.getPowerupType().Equals("upgrade"))
         {
-            rateOfFire += powerUp.getRateofFire();
             coolDownPerSec += powerUp.getCoolDownPerSec();
             bulletsPerShot += powerUp.getBulletAmount();
             bulletSprite = powerUp.getSprite();
@@ -164,26 +168,6 @@ public class Player : MonoBehaviour
             SetFiringRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, bulletSpriteScale);
 
             Destroy(powerUp.gameObject);
-        }
-    }
-
-
-    public void InitializePlayerObjects()
-    {
-
-        fireButton = GameObject.Find("FireButton");
-
-        health = GetComponent<HealthScript>();
-        if (health != null)
-        {
-            health.InstansiatePlayerHealthBar();
-        }
-
-        fireing = GetComponent<FiringScript>();
-        if (fireing != null)
-        {
-            SetFiringRules(rateOfFire, coolDownPerSec, bulletsPerShot, ammoAmount, startAngle, endAngle, bulletSprite, bulletSpeed, bulletDamage, bulletSpriteScale);
-            fireing.InitiatePlayerAmmo();
         }
     }
 }
