@@ -1869,7 +1869,7 @@ PrefabInstance:
     - target: {fileID: 8712173289346393, guid: 0dfb03b4e33bd004d84e0ca6faeab24f, type: 3}
       propertyPath: levelOver
       value: 
-      objectReference: {fileID: 1986606944}
+      objectReference: {fileID: 0}
     - target: {fileID: 8712173289346393, guid: 0dfb03b4e33bd004d84e0ca6faeab24f, type: 3}
       propertyPath: player
       value: 
@@ -1914,6 +1914,10 @@ PrefabInstance:
     - target: {fileID: 824147193, guid: 0dfb03b4e33bd004d84e0ca6faeab24f, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 824147189, guid: 0dfb03b4e33bd004d84e0ca6faeab24f, type: 3}
+      propertyPath: m_TagString
+      value: LevelOverScreen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dfb03b4e33bd004d84e0ca6faeab24f, type: 3}
@@ -2548,12 +2552,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1986606944 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2207806486614969316, guid: 0dfb03b4e33bd004d84e0ca6faeab24f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1753317613}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1993784232
 GameObject:
   m_ObjectHideFlags: 0

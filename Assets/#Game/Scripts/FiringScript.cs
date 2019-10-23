@@ -109,7 +109,6 @@ public class FiringScript: MonoBehaviour
             GameObject _Bullet = GetAmmo();
             if (!_Bullet.GetComponent<SpriteRenderer>().sprite.Equals(bulletSprite))
             {
-                Debug.Log("in If");
                 _Bullet.GetComponent<SpriteRenderer>().sprite = bulletSprite;
             }
             _Bullet.transform.position = transform.position;
